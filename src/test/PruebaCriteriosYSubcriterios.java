@@ -45,8 +45,6 @@ public class PruebaCriteriosYSubcriterios {
 		criterios.add(financiacion);
 		c.setCriterios(criterios);
 		c.buscar();
-		
-
 	}
 
 }

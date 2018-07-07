@@ -36,7 +36,6 @@ public class Controller {
 		this.bd = bd;
 	}
 
-	
 	public void setCriterios(List<Criterio> criterios2){
 		this.criterios = criterios2;
 	}
