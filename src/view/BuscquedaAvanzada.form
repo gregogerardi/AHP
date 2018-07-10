@@ -60,7 +60,7 @@
                 <properties>
                   <font size="18"/>
                   <horizontalAlignment value="0"/>
-                  <text value="0.0"/>
+                  <text value="1"/>
                 </properties>
               </component>
               <hspacer id="6b7b6">

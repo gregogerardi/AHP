@@ -5,8 +5,6 @@ import controller.Controller;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -57,18 +55,27 @@ public class BuscquedaAvanzada extends Visible {
         sliderVelocidad.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
+                if (sliderVelocidad.getValue() == 0) {
+                    sliderVelocidad.setValue(1);
+                }
                 lblVelocidadActual.setText(sliderVelocidad.getValue() + " Mhz");
             }
         });
         sliderPeso.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
+                if (sliderPeso.getValue() == 0) {
+                    sliderPeso.setValue(1);
+                }
                 lblPesoActual.setText(sliderPeso.getValue() + " gr");
             }
         });
         sliderRam.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
+                if (sliderRam.getValue() == 0) {
+                    sliderRam.setValue(1);
+                }
                 int valor = sliderRam.getValue();
                 String numero = "";
                 if (valor <= 0) {
@@ -87,11 +94,15 @@ public class BuscquedaAvanzada extends Visible {
                     numero = "32";
                 }
                 lblRamActual.setText(numero + " Gb");
+                sliderRam.setValue(Integer.parseInt(numero));
             }
         });
         sliderDisco.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
+                if (sliderDisco.getValue() == 0) {
+                    sliderDisco.setValue(1);
+                }
                 int valor = sliderDisco.getValue();
                 String numero = "";
                 if (valor <= 0) {
@@ -110,11 +121,15 @@ public class BuscquedaAvanzada extends Visible {
                     numero = "4096";
                 }
                 lblDiscoActual.setText(numero + " Gb");
+                sliderDisco.setValue(Integer.parseInt(numero));
             }
         });
         sliderAutonomia.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
+                if (sliderAutonomia.getValue() == 0) {
+                    sliderAutonomia.setValue(1);
+                }
                 lblAutonomiaActual.setText(sliderAutonomia.getValue() + " Hs");
             }
         });
@@ -130,41 +145,6 @@ public class BuscquedaAvanzada extends Visible {
                 }
             }
         });
-        // Listen for changes in the textPrecio
-        textPrecio.getDocument().addDocumentListener(new DocumentListener() {
-            public void changedUpdate(DocumentEvent e) {
-                warn();
-            }
-
-            public void removeUpdate(DocumentEvent e) {
-                warn();
-            }
-
-            public void insertUpdate(DocumentEvent e) {
-                warn();
-            }
-
-            public void warn() {
-                Integer precio = 0;
-                try {
-                    precio = Integer.parseInt(textPrecio.getText());
-                } catch (NumberFormatException n) {
-                    JOptionPane.showMessageDialog(null,
-                            "Error: El campo debe ser numerico y entero", "Error Massage",
-                            JOptionPane.ERROR_MESSAGE);
-                    textPrecio.setText("0");
-                    precio = 0;
-                }
-                if (precio < 0) {
-                    textPrecio.setText("0");
-                    precio = 0;
-                }
-                if (precio > 50000) {
-                    textPrecio.setText("50000");
-                    precio = 50000;
-                }
-            }
-        });
         atrasButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
@@ -174,31 +154,56 @@ public class BuscquedaAvanzada extends Visible {
         siguienteButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                Object[] valores = {
-                        Double.valueOf(textPrecio.getText()),//precio
-                        comboMarca.getSelectedItem(),//marca
-                        sliderVelocidad.getValue(),//procesador
-                        sliderPeso.getValue(),//peso
-                        sliderRam.getValue(),//ram
-                        sliderDisco.getValue(),//disco
-                        sliderAutonomia.getValue(),//autonomia
-                        comboPantalla.getSelectedItem(),//pantalla
-                        radioWifi.isSelected(),//wifi
-                        radioEthernet.isSelected(),
-                        radioHdmi.isSelected(),
-                        radioCDDVD.isSelected(),
-                        comboUsb.getSelectedItem(),
-                        radioBluethoot.isSelected(),
-                        radioVGA.isSelected(),
-                };
-                controlador.setValoresBuscados(valores);
-                cambiarAValorarCriterios();
+                int precio = 0;
+                boolean valido = true;
+                try {
+                    precio = Integer.parseInt(textPrecio.getText());
+                } catch (NumberFormatException n) {
+                    JOptionPane.showMessageDialog(null,
+                            "Error: El campo debe ser numerico y entero", "Error Massage",
+                            JOptionPane.ERROR_MESSAGE);
+                    textPrecio.setText("0");
+                    precio = 0;
+                    valido = false;
+                }
+                if (precio < 0) {
+                    textPrecio.setText("0");
+                    precio = 0;
+                }
+                if (precio > 50000) {
+                    textPrecio.setText("50000");
+                    precio = 50000;
+                }
+                if (valido) {
+                    Object marca = comboMarca.getSelectedItem();
+                    Object[] valores = {
+                            Double.valueOf(textPrecio.getText()),//precio
+                            //comboMarca.getSelectedItem(),//marca
+                            marca,
+                            sliderVelocidad.getValue(),//procesador
+                            sliderPeso.getValue(),//peso
+                            sliderRam.getValue(),//ram
+                            sliderDisco.getValue(),//disco
+                            sliderAutonomia.getValue(),//autonomia
+                            comboPantalla.getSelectedItem(),//pantalla
+                            radioWifi.isSelected(),//wifi
+                            radioEthernet.isSelected(),
+                            radioHdmi.isSelected(),
+                            radioCDDVD.isSelected(),
+                            comboUsb.getSelectedItem(),
+                            radioBluethoot.isSelected(),
+                            radioVGA.isSelected(),
+                    };
+                    controlador.setValoresBuscados(valores);
+                    cambiarAValorarCriterios();
+                }
             }
         });
     }
 
     private void cambiarAValorarCriterios() {
-
+        new ValorarCriterios(this, controlador).cargar();
+        this.descargar();
     }
 
     @Override
@@ -248,7 +253,7 @@ public class BuscquedaAvanzada extends Visible {
         Font textPrecioFont = this.$$$getFont$$$(null, -1, 18, textPrecio.getFont());
         if (textPrecioFont != null) textPrecio.setFont(textPrecioFont);
         textPrecio.setHorizontalAlignment(0);
-        textPrecio.setText("0.0");
+        textPrecio.setText("1");
         busquedaAvanzadoContenido.add(textPrecio, new com.intellij.uiDesigner.core.GridConstraints(3, 3, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(100, -1), null, 0, false));
         final com.intellij.uiDesigner.core.Spacer spacer2 = new com.intellij.uiDesigner.core.Spacer();
         busquedaAvanzadoContenido.add(spacer2, new com.intellij.uiDesigner.core.GridConstraints(3, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, 1, null, new Dimension(5, -1), new Dimension(5, -1), 0, false));

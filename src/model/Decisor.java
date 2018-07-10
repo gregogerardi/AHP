@@ -83,25 +83,49 @@ public class Decisor {
 						m.set(j, k, 1.0);
 					}
 					else {
+						Double valorFinal1 = 1.0;
+						Double valorFinal2 = 1.0;
 						if (c.isNumerico()) {
-							Double v1 = (Double) alternativas.get(j).get(atributo);
-							Double v2 = (Double) alternativas.get(k).get(atributo);
-							Double valorBuscado = c.getValor();
-							Double rangoValor = (double) Globals.getRango(atributo);
-							Double dif1 = Math.abs(valorBuscado - v1) / rangoValor;
-							Double dif2 = Math.abs(valorBuscado - v2) / rangoValor;
-							Double valorFinal1;
-							Double valorFinal2;
-							if (dif1 <= dif2) {
-								valorFinal1 = (dif2 - dif1);
-								valorFinal2 = (1 / valorFinal1);
-							} else {
-								valorFinal2 = escala.get(dif1 - dif2);
-								valorFinal1 = (1 / valorFinal2);
+							//TODO BUSCAR OTRA FORMA MENOS HORRIBLE DE CASTEAR A DOUBLE LOS VALORES QUE SEAN TIPO INTEGER QUE NO ME DEJA SIN PASAR POR EL MEDIO POR STRING
+							Double v1 = (Double.parseDouble(alternativas.get(j).get(atributo).toString()));
+							Double v2 = (Double.parseDouble(alternativas.get(k).get(atributo).toString()));
+							Double valorBuscado = (Double) c.getValor();
+							Double rangoValor = getMax(atributo);
+							if (c.getOptimisable() == Criterio.NO_OPTIMIZABLE) {
+								Double dif1;
+								Double dif2;
+								if (rangoValor != 0) {
+									dif1 = Math.abs(valorBuscado - v1) / rangoValor;
+									dif2 = Math.abs(valorBuscado - v2) / rangoValor;
+								} else {
+									dif1 = dif2 = valorBuscado;
+								}
+								if (dif1 <= dif2) {
+									valorFinal1 = escala.get(dif2 - dif1);
+									valorFinal2 = (1 / valorFinal1);
+								} else {
+									valorFinal2 = escala.get(dif1 - dif2);
+									valorFinal1 = (1 / valorFinal2);
+								}
 							}
-							m.set(j, k, valorFinal1);
-							m.set(k, j, valorFinal2);
+						} else {//para criterios por comparacion como la marca no cuantificados O los truefalse
+							Object v1 = alternativas.get(j).get(atributo);
+							Object v2 = alternativas.get(k).get(atributo);
+							Object valorBuscado = c.getValor();
+							//SI AMBAS PCS TIENEN LA MISMA MARCA, O AMBAS MARCAS SON DISTINTAS DE LA BUSCADA, EL VALOR COMPARATIVO ES 1
+							if ((v1.equals(v2)) || ((!v1.equals(valorBuscado)) && (!v2.equals(valorBuscado)))) {
+								valorFinal1 = valorFinal2 = 1.0;
+							} else { //una de las pcs coincide pero la otra no, se pone la maxima diferencia 9
+								if (v1.equals(valorBuscado)) {
+									valorFinal1 = 9.0;
+								} else {
+									valorFinal1 = 1.0 / 9;
+								}
+								valorFinal2 = 1 / valorFinal1;
+							}
 						}
+						m.set(j, k, valorFinal1);
+						m.set(k, j, valorFinal2);
 					}
 				}
 			}
@@ -121,7 +145,7 @@ public class Decisor {
 	private Vector<Score> getScores(Matriz m){
 		Vector <Score> salida = new Vector<Score>();
 		for (int f=0; f<m.filas()-1; f++){
-			Score nuevo = new Score ((String)alternativas.get(f).get("modelo"), 0.0);
+			Score nuevo = new Score((String) alternativas.get(f).get(Globals.modelo), 0.0);
 			for (int c=0; c<m.columnas(); c++){
 				double s = nuevo.getScore()+m.get(f, c)*m.get(m.filas()-1, c); //multiplica cada casillero de la fila por cada casillero de la ultima fila
 				nuevo.setScore(s);
@@ -134,7 +158,6 @@ public class Decisor {
 	private Vector<Double> getPonderacionesCriteriosHojas(){
 		Vector<Double> salida = new Vector<Double>();
 		for (Criterio c:criterios){
-		
 			salida.addAll(c.getPonderaciones());
 		}
 		return salida;
@@ -143,8 +166,8 @@ public class Decisor {
 	private Double getMax(String atributo){
 		Double max = -1.0;
 		for (Pc pc: alternativas){
-			if ((Double)pc.get(atributo)>max)
-				max = (Double)pc.get(atributo);
+			if (Double.parseDouble(pc.get(atributo).toString()) > max)
+				max = Double.parseDouble(pc.get(atributo).toString());
 			}
 		return max;
 	}
@@ -179,7 +202,6 @@ public class Decisor {
 		Matriz scores = this.generarMatrizFinal(vectores, ponderacionCriteriosFinales);
 		Vector<Score> salida = this.getScores(scores);
 		salida.sort(new ComparadorScores());
-		
 		return salida;		
 	}
 }

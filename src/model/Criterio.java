@@ -7,20 +7,24 @@ import java.util.List;
 
 public abstract class Criterio {
 	protected String nombre;
-	protected Double valor;
+    protected Object valor;
 	protected Criterio padre;
 	protected Hashtable<Criterio, JSlider> comparaciones;
 	protected Double ponderacion;
 	protected Hashtable<Criterio, Double> comps;
 	protected boolean numerico = true;
-	protected boolean maximisable = true;
+    protected int optimisable = 0;
+    public static int MAXIMISABLE = 1;
+    public static int MINIMIZABLE = -1;
+    public static int NO_OPTIMIZABLE = 0;
 
-	public boolean isMaximisable() {
-		return maximisable;
-	}
 
-	public void setMaximisable(boolean maximisable) {
-		this.maximisable = maximisable;
+    public int getOptimisable() {
+        return optimisable;
+    }
+
+    public void setOptimisable(int optimisable) {
+        this.optimisable = optimisable;
 	}
 
 	public boolean isNumerico() {
@@ -35,7 +39,7 @@ public abstract class Criterio {
 		this.nombre = n;
 		padre = null;
 		comparaciones = new Hashtable<>();
-		valor = new Double(0.0);
+        valor = new Object();
 		ponderacion = new Double(0.0);
 		comps = new Hashtable<>();
 	}
@@ -48,11 +52,17 @@ public abstract class Criterio {
 		return padre != null;
 	}
 
-	public void setValor(Double v) {
-		this.valor = v;
-	}
+    public void setValor(Double v) {
+        this.valor = v;
+        this.numerico = true;
+    }
 
-	public Double getValor() {
+    public void setValor(Object o) {
+        this.valor = o;
+        this.numerico = false;
+    }
+
+    public Object getValor() {
 		return valor;
 	}
 

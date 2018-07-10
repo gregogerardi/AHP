@@ -5,8 +5,6 @@ import controller.Controller;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -55,21 +53,38 @@ public class AgregarEquipo extends Visible {
     public AgregarEquipo(Visible ventanaAnterior, Controller controlador) {
         setVentanaAnterior(ventanaAnterior);
         this.controlador = controlador;
+        //inicializo en 1 los sliders
+        sliderAutonomia.setValue(1);
+        sliderDisco.setValue(128);
+        sliderPeso.setValue(1);
+        sliderRam.setValue(1);
+        sliderVelocidad.setValue(1);
+
         sliderVelocidad.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
+                if (sliderVelocidad.getValue() == 0) {
+                    sliderVelocidad.setValue(1);
+                }
                 lblVelocidadActual.setText(sliderVelocidad.getValue() + " Mhz");
+
             }
         });
         sliderPeso.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
+                if (sliderPeso.getValue() == 0) {
+                    sliderPeso.setValue(1);
+                }
                 lblPesoActual.setText(sliderPeso.getValue() + " gr");
             }
         });
         sliderRam.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
+                if (sliderRam.getValue() == 0) {
+                    sliderRam.setValue(1);
+                }
                 int valor = sliderRam.getValue();
                 String numero = "";
                 if (valor <= 0) {
@@ -88,11 +103,15 @@ public class AgregarEquipo extends Visible {
                     numero = "32";
                 }
                 lblRamActual.setText(numero + " Gb");
+                sliderRam.setValue(Integer.parseInt(numero));
             }
         });
         sliderDisco.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
+                if (sliderDisco.getValue() == 0) {
+                    sliderDisco.setValue(1);
+                }
                 int valor = sliderDisco.getValue();
                 String numero = "";
                 if (valor <= 0) {
@@ -111,11 +130,15 @@ public class AgregarEquipo extends Visible {
                     numero = "4096";
                 }
                 lblDiscoActual.setText(numero + " Gb");
+                sliderDisco.setValue(Integer.parseInt(numero));
             }
         });
         sliderAutonomia.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
+                if (sliderAutonomia.getValue() == 0) {
+                    sliderAutonomia.setValue(1);
+                }
                 lblAutonomiaActual.setText(sliderAutonomia.getValue() + " Hs");
             }
         });
@@ -128,28 +151,57 @@ public class AgregarEquipo extends Visible {
         agregarButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                Object[] valores = {
-                        textModelo.getText(),//modelo
-                        Double.valueOf(textPrecio.getText()),//precio
-                        comboMarca.getSelectedItem(),//marca
-                        sliderVelocidad.getValue(),//procesador
-                        sliderPeso.getValue(),//peso
-                        sliderRam.getValue(),//ram
-                        sliderDisco.getValue(),//disco
-                        sliderAutonomia.getValue(),//autonomia
-                        comboPantalla.getSelectedItem(),//pantalla
-                        radioWifi.isSelected(),//wifi
-                        radioEthernet.isSelected(),
-                        radioHdmi.isSelected(),
-                        radioCDDVD.isSelected(),
-                        comboUsb.getSelectedItem(),
-                        radioBluethoot.isSelected(),
-                        radioVGA.isSelected(),
-                };
-                if (controlador.agregarPc(valores)) {
-                    JOptionPane.showMessageDialog(null, "Agregado " + textModelo.getText() + " correctamente", "Correcto", JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(null, "El modelo " + textModelo.getText() + " ya se encuentra cargado", "Incorrecto", JOptionPane.ERROR_MESSAGE);
+                int precio = 0;
+                boolean valido = true;
+                try {
+                    precio = Integer.parseInt(textPrecio.getText());
+                } catch (NumberFormatException n) {
+                    JOptionPane.showMessageDialog(null,
+                            "Error: El campo debe ser numerico y entero", "Error Massage",
+                            JOptionPane.ERROR_MESSAGE);
+                    textPrecio.setText("0");
+                    precio = 0;
+                    valido = false;
+                }
+                if (precio < 0) {
+                    textPrecio.setText("0");
+                    precio = 0;
+                }
+                if (precio > 50000) {
+                    textPrecio.setText("50000");
+                    precio = 50000;
+                }
+                if (valido) {
+
+                    Object marca = comboMarca.getSelectedItem();
+                    String sinDefinir = "sin definir";
+                    if (marca.equals((Object) sinDefinir)) {
+                        marca = "cualquiera";
+                    }
+                    Object[] valores = {
+                            textModelo.getText(),//modelo
+                            Double.valueOf(textPrecio.getText()),//precio
+                            //comboMarca.getSelectedItem(),//marca
+                            marca,
+                            sliderVelocidad.getValue(),//procesador
+                            sliderPeso.getValue(),//peso
+                            sliderRam.getValue(),//ram
+                            sliderDisco.getValue(),//disco
+                            sliderAutonomia.getValue(),//autonomia
+                            comboPantalla.getSelectedItem(),//pantalla
+                            radioWifi.isSelected(),//wifi
+                            radioEthernet.isSelected(),
+                            radioHdmi.isSelected(),
+                            radioCDDVD.isSelected(),
+                            comboUsb.getSelectedItem(),
+                            radioBluethoot.isSelected(),
+                            radioVGA.isSelected(),
+                    };
+                    if (controlador.agregarPc(valores)) {
+                        JOptionPane.showMessageDialog(null, "Agregado " + textModelo.getText() + " correctamente", "Correcto", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "El modelo " + textModelo.getText() + " ya se encuentra cargado", "Incorrecto", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
 
@@ -163,41 +215,6 @@ public class AgregarEquipo extends Visible {
                 } else {
                     comboUsb.setSelectedIndex(0);
                     comboUsb.setEnabled(false);
-                }
-            }
-        });
-// Listen for changes in the textPrecio
-        textPrecio.getDocument().addDocumentListener(new DocumentListener() {
-            public void changedUpdate(DocumentEvent e) {
-                warn();
-            }
-
-            public void removeUpdate(DocumentEvent e) {
-                warn();
-            }
-
-            public void insertUpdate(DocumentEvent e) {
-                warn();
-            }
-
-            public void warn() {
-                Integer precio = 0;
-                try {
-                    precio = Integer.parseInt(textPrecio.getText());
-                } catch (NumberFormatException n) {
-                    JOptionPane.showMessageDialog(null,
-                            "Error: El campo debe ser numerico y entero", "Error Massage",
-                            JOptionPane.ERROR_MESSAGE);
-                    textPrecio.setText("0");
-                    precio = 0;
-                }
-                if (precio < 0) {
-                    textPrecio.setText("0");
-                    precio = 0;
-                }
-                if (precio > 50000) {
-                    textPrecio.setText("50000");
-                    precio = 50000;
                 }
             }
         });
@@ -254,7 +271,7 @@ public class AgregarEquipo extends Visible {
         Font textPrecioFont = this.$$$getFont$$$(null, -1, 18, textPrecio.getFont());
         if (textPrecioFont != null) textPrecio.setFont(textPrecioFont);
         textPrecio.setHorizontalAlignment(0);
-        textPrecio.setText("0.0");
+        textPrecio.setText("1");
         agregarEquipoContenido.add(textPrecio, new com.intellij.uiDesigner.core.GridConstraints(5, 3, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(100, -1), null, 0, false));
         final com.intellij.uiDesigner.core.Spacer spacer4 = new com.intellij.uiDesigner.core.Spacer();
         agregarEquipoContenido.add(spacer4, new com.intellij.uiDesigner.core.GridConstraints(5, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, 1, null, new Dimension(5, -1), new Dimension(5, -1), 0, false));
@@ -305,6 +322,7 @@ public class AgregarEquipo extends Visible {
         sliderVelocidad.setMinorTickSpacing(1000);
         sliderVelocidad.setPaintLabels(true);
         sliderVelocidad.setPaintTicks(true);
+        sliderVelocidad.setValue(1);
         agregarEquipoContenido.add(sliderVelocidad, new com.intellij.uiDesigner.core.GridConstraints(9, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(100, -1), null, 0, false));
         final com.intellij.uiDesigner.core.Spacer spacer8 = new com.intellij.uiDesigner.core.Spacer();
         agregarEquipoContenido.add(spacer8, new com.intellij.uiDesigner.core.GridConstraints(9, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, 1, null, new Dimension(5, -1), new Dimension(5, -1), 0, false));
@@ -332,6 +350,7 @@ public class AgregarEquipo extends Visible {
         sliderPeso.setMinorTickSpacing(500);
         sliderPeso.setPaintLabels(true);
         sliderPeso.setPaintTicks(true);
+        sliderPeso.setValue(1);
         agregarEquipoContenido.add(sliderPeso, new com.intellij.uiDesigner.core.GridConstraints(11, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(100, -1), null, 0, false));
         final com.intellij.uiDesigner.core.Spacer spacer11 = new com.intellij.uiDesigner.core.Spacer();
         agregarEquipoContenido.add(spacer11, new com.intellij.uiDesigner.core.GridConstraints(11, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, 1, null, new Dimension(5, -1), new Dimension(5, -1), 0, false));
@@ -360,7 +379,7 @@ public class AgregarEquipo extends Visible {
         sliderRam.setMinorTickSpacing(4);
         sliderRam.setPaintLabels(true);
         sliderRam.setPaintTicks(true);
-        sliderRam.setValue(0);
+        sliderRam.setValue(1);
         agregarEquipoContenido.add(sliderRam, new com.intellij.uiDesigner.core.GridConstraints(13, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(100, -1), null, 0, false));
         final com.intellij.uiDesigner.core.Spacer spacer14 = new com.intellij.uiDesigner.core.Spacer();
         agregarEquipoContenido.add(spacer14, new com.intellij.uiDesigner.core.GridConstraints(13, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, 1, null, new Dimension(5, -1), new Dimension(5, -1), 0, false));
@@ -387,7 +406,7 @@ public class AgregarEquipo extends Visible {
         sliderDisco.setMinorTickSpacing(256);
         sliderDisco.setPaintLabels(true);
         sliderDisco.setPaintTicks(true);
-        sliderDisco.setValue(0);
+        sliderDisco.setValue(1);
         agregarEquipoContenido.add(sliderDisco, new com.intellij.uiDesigner.core.GridConstraints(15, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(100, 42), null, 0, false));
         final com.intellij.uiDesigner.core.Spacer spacer16 = new com.intellij.uiDesigner.core.Spacer();
         agregarEquipoContenido.add(spacer16, new com.intellij.uiDesigner.core.GridConstraints(15, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, 1, null, new Dimension(5, 42), new Dimension(5, -1), 0, false));

@@ -15,10 +15,11 @@ public abstract class Visible {
     }
 
     public void cargar() {
-        frame = new JFrame("FRAME");
+        frame = new JFrame("Asistente Inteligente");
         setContent();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 
