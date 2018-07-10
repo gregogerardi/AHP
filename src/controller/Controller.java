@@ -1,39 +1,102 @@
 package controller;
 
+import model.*;
+import model.filtros.Filtro;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-import model.BaseDatos;
-import model.Criterio;
-import model.Decisor;
-import model.Matriz;
-import model.Pc;
-import model.Score;
-import model.filtros.Filtro;
-import view.VentanaResultados;
-
 public class Controller {
-	private BaseDatos bd;
+	private BaseDatos baseDatos;
 	private Decisor decisor;
 	private List<Filtro> filtros;
+	private Object[] valoresBuscados;
 	private List<Object> datosIngresados;
 	private List<Criterio> criterios;
-	
 	private List<Pc> alternativas;
+
+	private Pc generarPc(Object[] valores) {
+		Pc pc = new Pc();
+		for (int i = 0; i < Globals.atributos.length; i++) {
+			pc.set(Globals.atributos[i], valores[i]);
+		}
+		return pc;
+	}
+
+	public boolean agregarPc(Object[] valores) {//devuelve false si la pc ya esta cargada en la base, queda horrible TODO CAMBIARLO POR UNA EXCEPCION
+		Pc pc = generarPc(valores);
+		try {
+			if (baseDatos.contains(pc)) {
+				return false;
+			} else {
+				try {
+					baseDatos.addComputadora(pc);
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+
+	public boolean deletePc(Object[] valores) {
+		Pc pc = generarPc(valores);
+		try {
+			if (!baseDatos.contains(pc)) {
+				return false;
+			} else {
+				baseDatos.deleteComputadora(pc);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+
+	public void vaciarBase() {
+		try {
+			baseDatos.deleteAll();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
+	}
+
+	public List<Pc> recuperarPcsBase() {
+		List<Pc> pcs = new ArrayList<>();
+		try {
+			pcs = baseDatos.getComputadoras();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return pcs;
+	}
 	
 	public void setAlternativas(List<Pc> a){
 		alternativas =a;
 	}
 
 	public Controller(){
-		bd = new BaseDatos();
+		baseDatos = new BaseDatos();
 		filtros = new ArrayList<>();
 		datosIngresados = new ArrayList<>();
 	}
 	
 	public void setBaseDatos(BaseDatos bd){
-		this.bd = bd;
+		this.baseDatos = bd;
 	}
 
 	public void setCriterios(List<Criterio> criterios2){
@@ -42,17 +105,21 @@ public class Controller {
 	public void setFiltros(List<Filtro> filtros){
 		this.filtros = filtros;
 	}
-	
+
 	public void setDatos(List<Object> datos){
 		datosIngresados=datos;
 	}
-	
+
+	public void setValoresBuscados(Object[] valoresBuscados) {
+		this.valoresBuscados = valoresBuscados;
+	}
+
 	public List<Object> getDatos(){
 		return datosIngresados;
 	}
-		
-	private List<Pc> getFiltradas(){
-		List<Pc> computadoras = bd.getComputadoras();
+
+	private List<Pc> getFiltradas() throws IOException, ClassNotFoundException {
+		List<Pc> computadoras = baseDatos.getComputadoras();
 		List<Pc> filtradas = new ArrayList<>();
 		if (filtros.size()>0){
 			for (Pc pc: computadoras){

@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.BuscquedaAvanzada">
+  <grid id="27dc6" binding="busquedaAvanzada" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="594" height="751"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <scrollpane id="9718c" binding="busquedaAvanzadaMarco">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="1100" height="900"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="fa220" binding="busquedaAvanzadoContenido" layout-manager="GridLayoutManager" row-count="21" column-count="9" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints/>
+            <properties>
+              <autoscrolls value="true"/>
+              <background color="-1192521"/>
+              <foreground color="-1192521"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="9c543" class="javax.swing.JLabel" binding="titulo">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="7" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font size="36"/>
+                  <text value="Busqueda Avanzada"/>
+                </properties>
+              </component>
+              <vspacer id="e557a">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="7" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="a44df" class="javax.swing.JLabel" binding="lblPrecio">
+                <constraints>
+                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font size="18"/>
+                  <horizontalAlignment value="0"/>
+                  <text value="Precio:"/>
+                </properties>
+              </component>
+              <component id="275f0" class="javax.swing.JTextField" binding="textPrecio">
+                <constraints>
+                  <grid row="3" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="100" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="18"/>
+                  <horizontalAlignment value="0"/>
+                  <text value="0.0"/>
+                </properties>
+              </component>
+              <hspacer id="6b7b6">
+                <constraints>
+                  <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="5" height="-1"/>
+                    <maximum-size width="5" height="-1"/>
+                  </grid>
+                </constraints>
+              </hspacer>
+              <vspacer id="68253">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="7" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="798de" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="3" column="6" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font size="18"/>
+                  <horizontalAlignment value="0"/>
+                  <text value="Conectividad:"/>
+                </properties>
+              </component>
+              <component id="228ba" class="javax.swing.JLabel" binding="lblMarca">
+                <constraints>
+                  <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font size="18"/>
+                  <horizontalAlignment value="0"/>
+                  <text value="Marca:"/>
+                </properties>
+              </component>
+              <component id="de113" class="javax.swing.JComboBox" binding="comboMarca">
+                <constraints>
+                  <grid row="5" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="100" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="18"/>
+                  <model>
+                    <item value="Cualquiera"/>
+                    <item value="Acer"/>
+                    <item value="Compaq"/>
+                    <item value="Dell"/>
+                    <item value="HP"/>
+                    <item value="Lenovo"/>
+                    <item value="Mac"/>
+                    <item value="Samsung"/>
+                    <item value="Asus"/>
+                  </model>
+                </properties>
+              </component>
+              <hspacer id="ac74e">
+                <constraints>
+                  <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="5" height="-1"/>
+                    <maximum-size width="5" height="-1"/>
+                  </grid>
+                </constraints>
+              </hspacer>
+              <hspacer id="25760">
+                <constraints>
+                  <grid row="10" column="5" row-span="8" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <maximum-size width="50" height="-1"/>
+                  </grid>
+                </constraints>
+              </hspacer>
+              <component id="36b19" class="javax.swing.JLabel" binding="lblVelocidad">
+                <constraints>
+                  <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font size="18"/>
+                  <horizontalAlignment value="0"/>
+                  <text value="Procesador"/>
+                </properties>
+              </component>
+              <component id="35c2" class="javax.swing.JSlider" binding="sliderVelocidad">
+                <constraints>
+                  <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="100" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="10"/>
+                  <majorTickSpacing value="2000"/>
+                  <maximum value="4000"/>
+                  <minorTickSpacing value="1000"/>
+                  <paintLabels value="true"/>
+                  <paintTicks value="true"/>
+                </properties>
+              </component>
+              <hspacer id="467fb">
+                <constraints>
+                  <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="5" height="-1"/>
+                    <maximum-size width="5" height="-1"/>
+                  </grid>
+                </constraints>
+              </hspacer>
+              <component id="6722" class="javax.swing.JLabel" binding="lblVelocidadActual">
+                <constraints>
+                  <grid row="7" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <preferred-size width="120" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="18"/>
+                  <horizontalAlignment value="0"/>
+                  <text value="0 Mhz"/>
+                </properties>
+              </component>
+              <vspacer id="2d237">
+                <constraints>
+                  <grid row="4" column="3" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <vspacer id="7fe8f">
+                <constraints>
+                  <grid row="6" column="1" row-span="1" col-span="4" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="224b5" class="javax.swing.JLabel" binding="lblPeso">
+                <constraints>
+                  <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font size="18"/>
+                  <horizontalAlignment value="0"/>
+                  <text value="Peso:"/>
+                </properties>
+              </component>
+              <component id="95e37" class="javax.swing.JSlider" binding="sliderPeso">
+                <constraints>
+                  <grid row="9" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="100" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="10"/>
+                  <majorTickSpacing value="2500"/>
+                  <maximum value="5000"/>
+                  <minorTickSpacing value="500"/>
+                  <paintLabels value="true"/>
+                  <paintTicks value="true"/>
+                </properties>
+              </component>
+              <hspacer id="176d9">
+                <constraints>
+                  <grid row="9" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="5" height="-1"/>
+                    <maximum-size width="5" height="-1"/>
+                  </grid>
+                </constraints>
+              </hspacer>
+              <component id="e92be" class="javax.swing.JLabel" binding="lblPesoActual">
+                <constraints>
+                  <grid row="9" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <preferred-size width="120" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="18"/>
+                  <horizontalAlignment value="0"/>
+                  <text value="0 gr"/>
+                </properties>
+              </component>
+              <vspacer id="5e5df">
+                <constraints>
+                  <grid row="10" column="1" row-span="1" col-span="4" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <vspacer id="8e09e">
+                <constraints>
+                  <grid row="8" column="1" row-span="1" col-span="4" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="e9421" class="javax.swing.JLabel" binding="lblCapacidad">
+                <constraints>
+                  <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font size="18"/>
+                  <horizontalAlignment value="0"/>
+                  <text value="Ram:"/>
+                </properties>
+              </component>
+              <component id="8d9c5" class="javax.swing.JSlider" binding="sliderRam">
+                <constraints>
+                  <grid row="11" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="100" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="10"/>
+                  <majorTickSpacing value="8"/>
+                  <maximum value="32"/>
+                  <minimum value="0"/>
+                  <minorTickSpacing value="4"/>
+                  <paintLabels value="true"/>
+                  <paintTicks value="true"/>
+                  <value value="0"/>
+                </properties>
+              </component>
+              <hspacer id="6700a">
+                <constraints>
+                  <grid row="11" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="5" height="-1"/>
+                    <maximum-size width="5" height="-1"/>
+                  </grid>
+                </constraints>
+              </hspacer>
+              <component id="23d54" class="javax.swing.JLabel" binding="lblRamActual">
+                <constraints>
+                  <grid row="11" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <preferred-size width="120" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="18"/>
+                  <horizontalAlignment value="0"/>
+                  <text value="0 Gb"/>
+                </properties>
+              </component>
+              <vspacer id="4a98a">
+                <constraints>
+                  <grid row="12" column="1" row-span="1" col-span="4" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="55659" class="javax.swing.JLabel" binding="lblDisco">
+                <constraints>
+                  <grid row="13" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <preferred-size width="38" height="42"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="18"/>
+                  <horizontalAlignment value="0"/>
+                  <text value="Disco:"/>
+                </properties>
+              </component>
+              <component id="f6ab8" class="javax.swing.JSlider" binding="sliderDisco">
+                <constraints>
+                  <grid row="13" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="100" height="42"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="10"/>
+                  <majorTickSpacing value="2048"/>
+                  <maximum value="4096"/>
+                  <minimum value="0"/>
+                  <minorTickSpacing value="256"/>
+                  <paintLabels value="true"/>
+                  <paintTicks value="true"/>
+                  <value value="0"/>
+                </properties>
+              </component>
+              <hspacer id="dbc84">
+                <constraints>
+                  <grid row="13" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="5" height="42"/>
+                    <maximum-size width="5" height="-1"/>
+                  </grid>
+                </constraints>
+              </hspacer>
+              <component id="b63d4" class="javax.swing.JLabel" binding="lblDiscoActual">
+                <constraints>
+                  <grid row="13" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <preferred-size width="120" height="42"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="18"/>
+                  <horizontalAlignment value="0"/>
+                  <text value="0 Gb"/>
+                </properties>
+              </component>
+              <vspacer id="4b769">
+                <constraints>
+                  <grid row="14" column="1" row-span="1" col-span="4" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="d9752" class="javax.swing.JLabel" binding="lblPantalla">
+                <constraints>
+                  <grid row="17" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font size="18"/>
+                  <horizontalAlignment value="0"/>
+                  <text value="Pantalla: "/>
+                </properties>
+              </component>
+              <component id="7c570" class="javax.swing.JComboBox" binding="comboPantalla">
+                <constraints>
+                  <grid row="17" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="100" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="18"/>
+                  <model>
+                    <item value="13"/>
+                    <item value="13.5"/>
+                    <item value="14"/>
+                    <item value="14.5"/>
+                    <item value="15"/>
+                    <item value="15.5"/>
+                    <item value="16"/>
+                    <item value="16.5"/>
+                    <item value="17"/>
+                  </model>
+                </properties>
+              </component>
+              <hspacer id="8646f">
+                <constraints>
+                  <grid row="17" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="5" height="-1"/>
+                    <maximum-size width="5" height="-1"/>
+                  </grid>
+                </constraints>
+              </hspacer>
+              <vspacer id="cdfa4">
+                <constraints>
+                  <grid row="18" column="1" row-span="1" col-span="7" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="729f5" class="javax.swing.JLabel" binding="lblAutonomia">
+                <constraints>
+                  <grid row="15" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <preferred-size width="38" height="42"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="18"/>
+                  <horizontalAlignment value="0"/>
+                  <text value="Autonomía:"/>
+                </properties>
+              </component>
+              <component id="c36be" class="javax.swing.JSlider" binding="sliderAutonomia">
+                <constraints>
+                  <grid row="15" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="100" height="42"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="10"/>
+                  <majorTickSpacing value="6"/>
+                  <maximum value="24"/>
+                  <minimum value="0"/>
+                  <minorTickSpacing value="0"/>
+                  <paintLabels value="true"/>
+                  <paintTicks value="true"/>
+                  <value value="0"/>
+                </properties>
+              </component>
+              <hspacer id="8530d">
+                <constraints>
+                  <grid row="15" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="5" height="42"/>
+                    <maximum-size width="5" height="-1"/>
+                  </grid>
+                </constraints>
+              </hspacer>
+              <component id="7c82e" class="javax.swing.JLabel" binding="lblAutonomiaActual">
+                <constraints>
+                  <grid row="15" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <preferred-size width="120" height="42"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="18"/>
+                  <horizontalAlignment value="0"/>
+                  <text value="0 Hs"/>
+                </properties>
+              </component>
+              <vspacer id="c9af">
+                <constraints>
+                  <grid row="16" column="1" row-span="1" col-span="4" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="cffbb" class="javax.swing.JRadioButton" binding="radioWifi">
+                <constraints>
+                  <grid row="5" column="6" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="WiFi"/>
+                </properties>
+              </component>
+              <vspacer id="f78f6">
+                <constraints>
+                  <grid row="4" column="6" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="b971c" class="javax.swing.JRadioButton" binding="radioEthernet">
+                <constraints>
+                  <grid row="7" column="6" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Ethernet"/>
+                </properties>
+              </component>
+              <vspacer id="ed1d3">
+                <constraints>
+                  <grid row="6" column="6" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="a3d42" class="javax.swing.JRadioButton" binding="radioHdmi">
+                <constraints>
+                  <grid row="9" column="6" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Hdmi"/>
+                </properties>
+              </component>
+              <vspacer id="d79c6">
+                <constraints>
+                  <grid row="8" column="6" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <vspacer id="fb669">
+                <constraints>
+                  <grid row="10" column="6" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="207" class="javax.swing.JRadioButton" binding="radioUsb">
+                <constraints>
+                  <grid row="13" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="USB"/>
+                </properties>
+              </component>
+              <vspacer id="bd0d6">
+                <constraints>
+                  <grid row="12" column="6" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="2912d" class="javax.swing.JRadioButton" binding="radioBluethoot">
+                <constraints>
+                  <grid row="15" column="6" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Bluethoot"/>
+                </properties>
+              </component>
+              <vspacer id="3abeb">
+                <constraints>
+                  <grid row="14" column="6" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="adea0" class="javax.swing.JRadioButton" binding="radioVGA">
+                <constraints>
+                  <grid row="17" column="6" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="VGA"/>
+                </properties>
+              </component>
+              <vspacer id="89ca8">
+                <constraints>
+                  <grid row="16" column="6" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="e1154" class="javax.swing.JComboBox" binding="comboUsb">
+                <constraints>
+                  <grid row="13" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="100" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <enabled value="false"/>
+                  <font size="18"/>
+                  <model>
+                    <item value="0"/>
+                    <item value="1"/>
+                    <item value="2"/>
+                    <item value="3"/>
+                    <item value="4"/>
+                    <item value="5"/>
+                    <item value="6"/>
+                  </model>
+                </properties>
+              </component>
+              <component id="7e6fb" class="javax.swing.JRadioButton" binding="radioCDDVD">
+                <constraints>
+                  <grid row="11" column="6" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="CD/DVD"/>
+                </properties>
+              </component>
+              <vspacer id="196f7">
+                <constraints>
+                  <grid row="20" column="1" row-span="1" col-span="7" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <grid id="64307" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="19" column="0" row-span="1" col-span="9" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1192521"/>
+                  <foreground color="-1192521"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="db187" class="javax.swing.JButton" binding="atrasButton" default-binding="true">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false">
+                        <preferred-size width="50" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <horizontalAlignment value="0"/>
+                      <text value="Atras"/>
+                    </properties>
+                  </component>
+                  <component id="eac6e" class="javax.swing.JButton" binding="siguienteButton">
+                    <constraints>
+                      <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Siguiente"/>
+                    </properties>
+                  </component>
+                  <hspacer id="95b51">
+                    <constraints>
+                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </hspacer>
+                  <hspacer id="d7bff">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </hspacer>
+                  <hspacer id="b90c4">
+                    <constraints>
+                      <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </hspacer>
+                </children>
+              </grid>
+              <hspacer id="c99f8">
+                <constraints>
+                  <grid row="0" column="0" row-span="19" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <hspacer id="3ee06">
+                <constraints>
+                  <grid row="0" column="8" row-span="19" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+            </children>
+          </grid>
+        </children>
+      </scrollpane>
+    </children>
+  </grid>
+</form>
