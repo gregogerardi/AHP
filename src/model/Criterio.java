@@ -1,11 +1,9 @@
 package model;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
-import java.util.Set;
-
-import javax.swing.JSlider;
 
 public abstract class Criterio {
 	protected String nombre;
@@ -14,6 +12,24 @@ public abstract class Criterio {
 	protected Hashtable<Criterio, JSlider> comparaciones;
 	protected Double ponderacion;
 	protected Hashtable<Criterio, Double> comps;
+	protected boolean numerico = true;
+	protected boolean maximisable = true;
+
+	public boolean isMaximisable() {
+		return maximisable;
+	}
+
+	public void setMaximisable(boolean maximisable) {
+		this.maximisable = maximisable;
+	}
+
+	public boolean isNumerico() {
+		return numerico;
+	}
+
+	public void setNumerico(boolean numerico) {
+		this.numerico = numerico;
+	}
 
 	public Criterio(String n) {
 		this.nombre = n;

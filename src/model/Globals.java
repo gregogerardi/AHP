@@ -20,4 +20,36 @@ public class Globals {
     public static String vga = "VGA";
     public static String[] atributos = {modelo, precio, marca, procesador, peso, ram, disco, autonomia,
             pantalla, wifi, ethernet, hdmi, cddvd, usb, bluethoot, vga};
+    public static String[] escala = {
+            "levemente mas importante"
+            , "levemente mas importante"
+            , "un poco mas importante"
+            , "un poco mas importante"
+            , "mas importante"
+            , "mas importante"
+            , "mucho mas importante"
+            , "mucho mas importante"
+            , "extremadamente mas importante"
+    };
+
+    public static int getRango(String criterio) {
+        switch (criterio) {
+            case ("precio"):
+                return 50000;
+            case ("procesador"):
+                return 4000;
+            case ("peso"):
+                return 5000;
+            case ("ram"):
+                return 32;
+            case ("disco"):
+                return 4096;
+            case ("autonomia"):
+                return 24;
+            case ("pantalla"):
+                return 17 - 13;
+            default:
+                return 1;
+        }
+    }
 }

@@ -5,6 +5,8 @@ import controller.Controller;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -161,6 +163,41 @@ public class AgregarEquipo extends Visible {
                 } else {
                     comboUsb.setSelectedIndex(0);
                     comboUsb.setEnabled(false);
+                }
+            }
+        });
+// Listen for changes in the textPrecio
+        textPrecio.getDocument().addDocumentListener(new DocumentListener() {
+            public void changedUpdate(DocumentEvent e) {
+                warn();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                warn();
+            }
+
+            public void insertUpdate(DocumentEvent e) {
+                warn();
+            }
+
+            public void warn() {
+                Integer precio = 0;
+                try {
+                    precio = Integer.parseInt(textPrecio.getText());
+                } catch (NumberFormatException n) {
+                    JOptionPane.showMessageDialog(null,
+                            "Error: El campo debe ser numerico y entero", "Error Massage",
+                            JOptionPane.ERROR_MESSAGE);
+                    textPrecio.setText("0");
+                    precio = 0;
+                }
+                if (precio < 0) {
+                    textPrecio.setText("0");
+                    precio = 0;
+                }
+                if (precio > 50000) {
+                    textPrecio.setText("50000");
+                    precio = 50000;
                 }
             }
         });

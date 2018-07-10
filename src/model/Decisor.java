@@ -1,6 +1,6 @@
 package model;
+
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Vector;
 
@@ -16,15 +16,17 @@ public class Decisor {
 		escala = new Escala();
 	}
 
-	public void setCriterios (List<Criterio> criterios){
+	public void setCriterios(List<Criterio> criterios) {
 		this.criterios = criterios;
 	}
 	
 	public void addMatriz(Matriz m){
 		matricesAlternativas.add(m);
-		
 	}
-	
+
+	public Matriz getMatrizComparacionCriterios() {
+		return getMatrizComparacionCriterios(criterios);
+	}
 
 	public Matriz getMatrizComparacionCriterios(List<Criterio> criterios){
 		//HACE UNA MATRIZ PARA LOS CRITERIOS PADRES.SI ALGUN CRITERIO TIENE SUBCRITERIOS SE GENERA UNA MATRIZ APARTE
@@ -69,7 +71,7 @@ public class Decisor {
 	}
 	
 	 //COMPARACION PAREADA ENTRE ALTERNATIVAS
-	public void compararAlternativas(){     
+	 public void compararAlternativas() {
 		List<Criterio> criteriosHojas = this.aplanarCriterios();
 		for (Criterio c: criteriosHojas) {
 			String atributo = c.getNombre();
@@ -81,25 +83,25 @@ public class Decisor {
 						m.set(j, k, 1.0);
 					}
 					else {
-						Double v1 = (Double) alternativas.get(j).get(atributo);
-						Double v2 = (Double) alternativas.get(k).get(atributo);
-						Double valorBuscado = (Double) c.getValor();
-						Double maxValor = getMax(atributo);
-						Double dif1= Math.abs(valorBuscado - v1)/maxValor; 
-						Double dif2= Math.abs(valorBuscado - v2) /maxValor;
-						Double valorFinal1;
-						Double valorFinal2;
-						if (dif1<=dif2){
-							valorFinal1=escala.get(dif2-dif1);
-							valorFinal2= (1/valorFinal1);
+						if (c.isNumerico()) {
+							Double v1 = (Double) alternativas.get(j).get(atributo);
+							Double v2 = (Double) alternativas.get(k).get(atributo);
+							Double valorBuscado = c.getValor();
+							Double rangoValor = (double) Globals.getRango(atributo);
+							Double dif1 = Math.abs(valorBuscado - v1) / rangoValor;
+							Double dif2 = Math.abs(valorBuscado - v2) / rangoValor;
+							Double valorFinal1;
+							Double valorFinal2;
+							if (dif1 <= dif2) {
+								valorFinal1 = (dif2 - dif1);
+								valorFinal2 = (1 / valorFinal1);
+							} else {
+								valorFinal2 = escala.get(dif1 - dif2);
+								valorFinal1 = (1 / valorFinal2);
+							}
+							m.set(j, k, valorFinal1);
+							m.set(k, j, valorFinal2);
 						}
-						else {
-							valorFinal2=escala.get(dif1-dif2);
-							valorFinal1= (1/valorFinal2);
-						}
-						m.set(j, k, valorFinal1);
-						m.set(k, j, valorFinal2);
-
 					}
 				}
 			}
