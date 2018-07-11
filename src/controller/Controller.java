@@ -9,8 +9,10 @@ import java.util.List;
 public class Controller {
     private BaseDatos baseDatos;
     private Decisor decisor;
+    //TODO NUNCA USADO
     //private List<Filtro> filtros;
     private Object[] valoresBuscados;
+    //TODO NUNCA USADO
     // private List<Object> datosIngresados;
     private List<Criterio> criterios;
     private List<Pc> alternativas;
@@ -82,10 +84,12 @@ public class Controller {
         }
         return pcs;
     }
-
+    //TODO NUNCA USADO
+/*
     public void setAlternativas(List<Pc> a) {
         alternativas = a;
     }
+*/
 
     public Controller() {
         baseDatos = new BaseDatos();
@@ -93,18 +97,22 @@ public class Controller {
         //    datosIngresados = new ArrayList<>();
     }
 
+    //TODO NUNCA USADO
     //public void setBaseDatos(BaseDatos bd) {
     //    this.baseDatos = bd;
     //}
 
+    //TODO NUNCA USADO
+    /*
     public void setCriterios(List<Criterio> criterios2) {
         this.criterios = criterios2;
     }
-
+*/
+    //TODO NUNCA USADO
     //public void setFiltros(List<Filtro> filtros) {
     //    this.filtros = filtros;
     //}
-
+    //TODO NUNCA USADO
     //public void setDatos(List<Object> datos) {
     //    datosIngresados = datos;
     //}
@@ -114,10 +122,12 @@ public class Controller {
         genCriterios();
     }
 
+    //TODO NUNCA USADO
     //public List<Object> getDatos() {
     //   return datosIngresados;
     //}
 
+    //TODO NUNCA USADO
     /*private List<Pc> getFiltradas() throws IOException, ClassNotFoundException {
         List<Pc> computadoras = baseDatos.getComputadoras();
         List<Pc> filtradas = new ArrayList<>();

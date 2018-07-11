@@ -123,7 +123,7 @@ public class VentanaComparaciones extends JFrame {
 
             }
             List<Criterio> subcriterios = criterios.get(i).getSubcriterios();
-            if (subcriterios != null) {
+            if (subcriterios.size()!>0) {
                 this.mostrarComparaciones(subcriterios);
             }
         }

@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CriterioSimple extends Criterio {
-	private Criterio padre;
+	//TODO NUNCA USADO
+	//private Criterio padre;
 	
 	public CriterioSimple(String nombre){
 		super(nombre);
 	}
 	
 	public List<Criterio> getSubcriterios(){
-		return new ArrayList<Criterio>();
+		return new ArrayList<>();
 	}
 	
 	public List<Criterio> getHojas(){
@@ -19,10 +20,10 @@ public class CriterioSimple extends Criterio {
 		salida.add(this);
 		return salida;
 	}
-	
-	public boolean esSubcriterio(){
+	//TODO NUNCA USADO
+	/*public boolean esSubcriterio(){
 		return padre != null;
-	}
+	}*/
 
 	@Override
 	public void setMatriz(Matriz m) {

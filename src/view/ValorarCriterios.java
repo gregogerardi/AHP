@@ -2,6 +2,7 @@ package view;
 
 import controller.Controller;
 import model.Criterio;
+import model.Escala;
 import model.Globals;
 
 import javax.swing.*;
@@ -22,12 +23,13 @@ public class ValorarCriterios extends Visible {
     private JPanel criteriosDatos;
     private JButton atrasButton;
     private JButton buscarButton;
+    //TODO NUNCA USADO
     //private List<Criterio> criterios;
 
     public ValorarCriterios(Visible ventanaAnterior, Controller controlador) {
         this.controlador = controlador;
-        $$$setupUI$$$();
         setVentanaAnterior(ventanaAnterior);
+        $$$setupUI$$$();
         atrasButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
@@ -54,6 +56,7 @@ public class ValorarCriterios extends Visible {
     }
 
     private void generarComparadores(List<Criterio> criterios) {
+        Escala escala = new Escala();
         for (int i = 0; i < criterios.size() - 1; i++) {
             for (int j = i + 1; j < criterios.size(); j++) {
                 Criterio c1 = criterios.get(i);
@@ -77,25 +80,33 @@ public class ValorarCriterios extends Visible {
                     public void stateChanged(ChangeEvent e) {
                         String texto;
                         int valor = s.getValue();
-                        if ((valor <= 1) && (valor >= -1))
+                        if (valor == 0) {
                             texto = crit1 + " y " + crit2 + " son igual de importantes";
-                        else {
-                            if (valor > 1)
+                            controlador.setComparacion(c1, c2, (escala.get((double) valor)));
+                        } else {
+                            if (valor >= 1) {
                                 texto = crit1 + " es " + Globals.escala[valor] + " que " + crit2;
-                            else
+                                controlador.setComparacion(c1, c2, (escala.get(valor / 10.0)));
+                            } else {
                                 texto = crit2 + " es " + Globals.escala[-valor] + " que " + crit1;
+                                controlador.setComparacion(c1, c2, (1 / (escala.get(valor / 10.0))));
+                            }
                         }
                         descripcion.setText(texto);
-                        controlador.setComparacion(c1, c2, (Double.valueOf(s.getValue())));
                     }
                 });
                 criteriosDatos.add(descripcion);
                 criteriosDatos.add(s);
+                controlador.setComparacion(c1, c2, (escala.get(0.0)));
             }
             List<Criterio> subcriterios = criterios.get(i).getSubcriterios();
-            if (subcriterios != null) {
+            if (subcriterios.size() != 0) {
                 this.generarComparadores(subcriterios);
             }
+        }
+        List<Criterio> subcriterios = criterios.get(criterios.size() - 1).getSubcriterios();
+        if (subcriterios.size() != 0) {
+            this.generarComparadores(subcriterios);
         }
     }
 

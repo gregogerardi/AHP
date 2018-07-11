@@ -24,7 +24,8 @@ public class Inventario extends Visible {
     private JButton botonClearDB;
     private JButton atrasButton;
     private JButton borrasSeleccionadoButton;
-    private JPanel listadoContenido;
+    //TODO NUNCA USADO
+    //private JPanel listadoContenido;
 
     private DefaultTableModel defaultTableModel;
 

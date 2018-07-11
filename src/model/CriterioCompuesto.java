@@ -46,7 +46,7 @@ public class CriterioCompuesto extends Criterio {
 			for (Double val: ponderacionesCriterio){
 				Double nuevo = this.ponderacion * val;
 				salida.add(nuevo);
-			};
+            }
 		}
 		return salida;
 	}

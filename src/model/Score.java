@@ -13,9 +13,13 @@ public class Score {
 		return nombre;
 	}
 
+
+	//TODO NUNCA USADO
+/*
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+*/
 
 	public Double getScore() {
 		return score;

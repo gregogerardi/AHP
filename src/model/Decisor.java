@@ -19,11 +19,12 @@ public class Decisor {
 	public void setCriterios(List<Criterio> criterios) {
 		this.criterios = criterios;
 	}
-	
-	public void addMatriz(Matriz m){
+
+	//TODO NUNCA USADO
+	/*public void addMatriz(Matriz m){
 		matricesAlternativas.add(m);
 	}
-
+*/
 	public Matriz getMatrizComparacionCriterios() {
 		return getMatrizComparacionCriterios(criterios);
 	}
@@ -35,26 +36,27 @@ public class Decisor {
 		for (int f=0; f<criterios.size(); f++){
 			Criterio c1 = criterios.get(f);
 			List<Criterio> comparaciones = c1.getComparados();
+			//TODO BORRAR CARTELES
 			//System.out.println( "f vale "+f+" "+c1.nombre+ " "+comparaciones.size());
 			//SE COMPARA CON EL MISMO
-			int c = f;
-			matrizCriteriosLocal.set(f, c, 1.0);
-			c++;
+			matrizCriteriosLocal.set(f, f, 1.0);
 			//SE COMPARA CON LAS DEMAS COMPARACIONES QUE TENGA EL CRITERIO
-			while (c<=comparaciones.size()){
-				Criterio c2 = comparaciones.remove(0);
-				matrizCriteriosLocal.set(f, c, c1.getComparacion(c2));
+			int c = f;
+			while ((c - f) < comparaciones.size()) {
+				Criterio c2 = comparaciones.get(c - f);
+				matrizCriteriosLocal.set(f, c + 1, c1.getComparacion(c2));
 				c++;
 			}
 		    //SI TIENE SUBCRITERIOS SE LLAMA RECURSIVAMENTE A ESTE METODO Y SE GUARDA ESA MATRIZ DE RETORNO EN EL CRITERIO PADRE
+			//TODO BORRAR CARTELES
 			//System.out.println("venia generando la matriz "+ matrizCriterios.toString());
 			List<Criterio> subcriterios = c1.getSubcriterios();
 			if (!subcriterios.isEmpty()){
 				Matriz m = this.getMatrizComparacionCriterios(subcriterios);
+				//TODO BORRAR CARTELES
 				//System.out.println("setea la matriz "+m.toString() );
 				c1.setMatriz(m);
 			}
-
 		}
 		matrizCriteriosLocal.complementar();
 		return matrizCriteriosLocal;
@@ -143,7 +145,7 @@ public class Decisor {
 	}
 	
 	private Vector<Score> getScores(Matriz m){
-		Vector <Score> salida = new Vector<Score>();
+		Vector<Score> salida = new Vector<>();
 		for (int f=0; f<m.filas()-1; f++){
 			Score nuevo = new Score((String) alternativas.get(f).get(Globals.modelo), 0.0);
 			for (int c=0; c<m.columnas(); c++){

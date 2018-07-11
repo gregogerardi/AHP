@@ -4,6 +4,9 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/src/OLD" />
+      <excludeFolder url="file://$MODULE_DIR$/src/model/OLD" />
+      <excludeFolder url="file://$MODULE_DIR$/src/model/filtros/OLD" />
       <excludeFolder url="file://$MODULE_DIR$/src/view/viewOldPaula" />
     </content>
     <orderEntry type="inheritedJdk" />

@@ -1,4 +1,4 @@
-package model;
+package model.OLD;
 import java.util.Hashtable;
 
 public class Computadora {

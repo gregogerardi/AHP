@@ -1,7 +1,6 @@
 package model;
 
 import java.util.Hashtable;
-import java.util.Set;
 
 public class Pc implements java.io.Serializable {
     private Hashtable<String, Object> atributos;
@@ -24,7 +23,8 @@ public class Pc implements java.io.Serializable {
             return atributos.get(a);
         return null;
     }
-
+    //TODO NUNCA USADO
+    /*
     public String[] getAtts() {
         Set<String> atri = atributos.keySet();
         String[] resultado = new String[atri.size()];
@@ -34,5 +34,5 @@ public class Pc implements java.io.Serializable {
             i++;
         }
         return resultado;
-    }
+    }*/
 }
