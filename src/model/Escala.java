@@ -41,8 +41,9 @@ public class Escala {
 		Double d9 = 0.8;
 		Double d10 = 1.0;
 		List<Double> l5 = new ArrayList<>();
-		l4.add(d9);
-		l4.add(d10);
+		//TODO PUTIAR A GONZA POR COPIAR Y PEGAR SIN CAMBIAR EL NUMERO DE L ME LLEVO TODA LA NOCHE ENCONTRARLO JAJAJA
+		l5.add(d9);
+		l5.add(d10);
 		escala.put(9.0, l5);
 	}
 	
@@ -52,7 +53,7 @@ public class Escala {
 		else{
 			for (double i=1.0; i<=9.0; i++){
 				if ((puntaje>(escala.get(i).get(0)) && (puntaje<=escala.get(i).get(1))))
-					return (double) i;
+					return i;
 				i++;
 			}
 		return 9.0;    //SE ASUME QUE SON MUY DISTINTOS COMO PARA DEVOLVER ALGO, SINO DA ERROR

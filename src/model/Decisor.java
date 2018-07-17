@@ -1,6 +1,6 @@
 package model;
+
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Vector;
 
@@ -16,15 +16,18 @@ public class Decisor {
 		escala = new Escala();
 	}
 
-	public void setCriterios (List<Criterio> criterios){
+	public void setCriterios(List<Criterio> criterios) {
 		this.criterios = criterios;
 	}
-	
-	public void addMatriz(Matriz m){
+
+	//TODO NUNCA USADO
+	/*public void addMatriz(Matriz m){
 		matricesAlternativas.add(m);
-		
 	}
-	
+*/
+	public Matriz getMatrizComparacionCriterios() {
+		return getMatrizComparacionCriterios(criterios);
+	}
 
 	public Matriz getMatrizComparacionCriterios(List<Criterio> criterios){
 		//HACE UNA MATRIZ PARA LOS CRITERIOS PADRES.SI ALGUN CRITERIO TIENE SUBCRITERIOS SE GENERA UNA MATRIZ APARTE
@@ -33,26 +36,27 @@ public class Decisor {
 		for (int f=0; f<criterios.size(); f++){
 			Criterio c1 = criterios.get(f);
 			List<Criterio> comparaciones = c1.getComparados();
+			//TODO BORRAR CARTELES
 			//System.out.println( "f vale "+f+" "+c1.nombre+ " "+comparaciones.size());
 			//SE COMPARA CON EL MISMO
-			int c = f;
-			matrizCriteriosLocal.set(f, c, 1.0);
-			c++;
+			matrizCriteriosLocal.set(f, f, 1.0);
 			//SE COMPARA CON LAS DEMAS COMPARACIONES QUE TENGA EL CRITERIO
-			while (c<=comparaciones.size()){
-				Criterio c2 = comparaciones.remove(0);
-				matrizCriteriosLocal.set(f, c, c1.getComparacion(c2));
+			int c = f;
+			while ((c - f) < comparaciones.size()) {
+				Criterio c2 = comparaciones.get(c - f);
+				matrizCriteriosLocal.set(f, c + 1, c1.getComparacion(c2));
 				c++;
 			}
 		    //SI TIENE SUBCRITERIOS SE LLAMA RECURSIVAMENTE A ESTE METODO Y SE GUARDA ESA MATRIZ DE RETORNO EN EL CRITERIO PADRE
+			//TODO BORRAR CARTELES
 			//System.out.println("venia generando la matriz "+ matrizCriterios.toString());
 			List<Criterio> subcriterios = c1.getSubcriterios();
 			if (!subcriterios.isEmpty()){
 				Matriz m = this.getMatrizComparacionCriterios(subcriterios);
+				//TODO BORRAR CARTELES
 				//System.out.println("setea la matriz "+m.toString() );
 				c1.setMatriz(m);
 			}
-
 		}
 		matrizCriteriosLocal.complementar();
 		return matrizCriteriosLocal;
@@ -69,7 +73,7 @@ public class Decisor {
 	}
 	
 	 //COMPARACION PAREADA ENTRE ALTERNATIVAS
-	public void compararAlternativas(){     
+	 public void compararAlternativas() {
 		List<Criterio> criteriosHojas = this.aplanarCriterios();
 		for (Criterio c: criteriosHojas) {
 			String atributo = c.getNombre();
@@ -81,25 +85,49 @@ public class Decisor {
 						m.set(j, k, 1.0);
 					}
 					else {
-						Double v1 = (Double) alternativas.get(j).get(atributo);
-						Double v2 = (Double) alternativas.get(k).get(atributo);
-						Double valorBuscado = (Double) c.getValor();
-						Double maxValor = getMax(atributo);
-						Double dif1= Math.abs(valorBuscado - v1)/maxValor; 
-						Double dif2= Math.abs(valorBuscado - v2) /maxValor;
-						Double valorFinal1;
-						Double valorFinal2;
-						if (dif1<=dif2){
-							valorFinal1=escala.get(dif2-dif1);
-							valorFinal2= (1/valorFinal1);
-						}
-						else {
-							valorFinal2=escala.get(dif1-dif2);
-							valorFinal1= (1/valorFinal2);
+						Double valorFinal1 = 1.0;
+						Double valorFinal2 = 1.0;
+						if (c.isNumerico()) {
+							//TODO BUSCAR OTRA FORMA MENOS HORRIBLE DE CASTEAR A DOUBLE LOS VALORES QUE SEAN TIPO INTEGER QUE NO ME DEJA SIN PASAR POR EL MEDIO POR STRING
+							Double v1 = (Double.parseDouble(alternativas.get(j).get(atributo).toString()));
+							Double v2 = (Double.parseDouble(alternativas.get(k).get(atributo).toString()));
+							Double valorBuscado = (Double) c.getValor();
+							Double rangoValor = getMax(atributo);
+							if (c.getOptimisable() == Criterio.NO_OPTIMIZABLE) {
+								Double dif1;
+								Double dif2;
+								if (rangoValor != 0) {
+									dif1 = Math.abs(valorBuscado - v1) / rangoValor;
+									dif2 = Math.abs(valorBuscado - v2) / rangoValor;
+								} else {
+									dif1 = dif2 = valorBuscado;
+								}
+								if (dif1 <= dif2) {
+									valorFinal1 = escala.get(dif2 - dif1);
+									valorFinal2 = (1 / valorFinal1);
+								} else {
+									valorFinal2 = escala.get(dif1 - dif2);
+									valorFinal1 = (1 / valorFinal2);
+								}
+							}
+						} else {//para criterios por comparacion como la marca no cuantificados O los truefalse
+							Object v1 = alternativas.get(j).get(atributo);
+							Object v2 = alternativas.get(k).get(atributo);
+							Object valorBuscado = c.getValor();
+							//SI AMBAS PCS TIENEN LA MISMA MARCA, O AMBAS MARCAS SON DISTINTAS DE LA BUSCADA, EL VALOR COMPARATIVO ES 1
+							if ((v1.equals(v2)) || ((!v1.equals(valorBuscado)) && (!v2.equals(valorBuscado)))) {
+								valorFinal1 = valorFinal2 = 1.0;
+							} else { //una de las pcs coincide pero la otra no, se pone la maxima diferencia 9
+								if (v1.equals(valorBuscado)) {
+									valorFinal1 = 9.0;
+								} else {
+									valorFinal1 = 1.0 / 9;
+								}
+								valorFinal2 = 1 / valorFinal1;
+							}
 						}
 						m.set(j, k, valorFinal1);
 						m.set(k, j, valorFinal2);
-
 					}
 				}
 			}
@@ -117,9 +145,9 @@ public class Decisor {
 	}
 	
 	private Vector<Score> getScores(Matriz m){
-		Vector <Score> salida = new Vector<Score>();
+		Vector<Score> salida = new Vector<>();
 		for (int f=0; f<m.filas()-1; f++){
-			Score nuevo = new Score ((String)alternativas.get(f).get("modelo"), 0.0);
+			Score nuevo = new Score((String) alternativas.get(f).get(Globals.modelo), 0.0);
 			for (int c=0; c<m.columnas(); c++){
 				double s = nuevo.getScore()+m.get(f, c)*m.get(m.filas()-1, c); //multiplica cada casillero de la fila por cada casillero de la ultima fila
 				nuevo.setScore(s);
@@ -132,7 +160,6 @@ public class Decisor {
 	private Vector<Double> getPonderacionesCriteriosHojas(){
 		Vector<Double> salida = new Vector<Double>();
 		for (Criterio c:criterios){
-		
 			salida.addAll(c.getPonderaciones());
 		}
 		return salida;
@@ -141,8 +168,8 @@ public class Decisor {
 	private Double getMax(String atributo){
 		Double max = -1.0;
 		for (Pc pc: alternativas){
-			if ((Double)pc.get(atributo)>max)
-				max = (Double)pc.get(atributo);
+			if (Double.parseDouble(pc.get(atributo).toString()) > max)
+				max = Double.parseDouble(pc.get(atributo).toString());
 			}
 		return max;
 	}
@@ -177,7 +204,6 @@ public class Decisor {
 		Matriz scores = this.generarMatrizFinal(vectores, ponderacionCriteriosFinales);
 		Vector<Score> salida = this.getScores(scores);
 		salida.sort(new ComparadorScores());
-		
 		return salida;		
 	}
 }

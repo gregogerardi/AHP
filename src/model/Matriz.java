@@ -1,5 +1,5 @@
 package model;
-import java.util.List;
+
 import java.util.Vector;
 
 public class Matriz {
@@ -40,7 +40,8 @@ public class Matriz {
 		}
 		return totalFila/maxColumnas;
 	}
-	
+	//TODO NUNCA USADO
+/*
 	public double getPromedioColumna(int c){
 		double totalColumna= 0.0;
 		for (int f=0; f<maxFilas; f++){
@@ -48,7 +49,10 @@ public class Matriz {
 		}
 		return totalColumna/maxFilas;
 	}
-	
+*/
+
+	//TODO NUNCA USADO
+/*
 	public double sumaFila(int f){
 		double salida = 0.0;
 		for (int c=0; c<maxColumnas; c++){
@@ -56,7 +60,8 @@ public class Matriz {
 		}
 		return salida;
 	}
-	
+*/
+
 	public double sumaColumna(int c){
 		double salida = 0.0;
 		for (int f=0; f<maxFilas; f++){
@@ -138,6 +143,8 @@ public class Matriz {
 			text=text+"]";
 		return text;
 	}
+	//TODO NUNCA USADO
+//TODO PENDIENTE DE VALIDAR CONSISTENCIA
 	/*public boolean Consistencia() {	//se tiene que llamar con la matriz sin normalizar
 		Matriz matrizNueva = clone(this);
 		Vector<Double> vector = getVector();
@@ -163,10 +170,14 @@ public class Matriz {
 			return false;
 	}*/
 
-	
+	//TODO NUNCA USADO
+	/*
 	public double getIndiceAleatorio(int size) {// Devuelve una aproximacion del RI. Extraida de internet(No estaba en las filminas)
 		return (1.98*(size-2))/size;
-	}
+	}*/
+	//TODO NUNCA USADO
+/*
+
 	public Matriz clone(Matriz mat){
 		Matriz matrizNueva = new Matriz(mat.maxFilas,mat.maxColumnas);
 		for(int i=0;i<matrizNueva.maxFilas;i++)
@@ -175,4 +186,5 @@ public class Matriz {
 		return matrizNueva;
 	}
 	
+*/
 }
