@@ -143,41 +143,31 @@ public class Matriz {
 			text=text+"]";
 		return text;
 	}
-	//TODO NUNCA USADO
-//TODO PENDIENTE DE VALIDAR CONSISTENCIA
-	/*public boolean Consistencia() {	//se tiene que llamar con la matriz sin normalizar
+	public boolean esConsistente() {	//se tiene/puede que llamar con la matriz sin normalizar.Creo que funciona igual (por eso el /puede)
 		Matriz matrizNueva = clone(this);
 		Vector<Double> vector = getVector();
-		Vector<Double> primeraInstancia = new Vector<Double>();
+		double aux = 0;
 		for (int i = 0 ; i < maxFilas ; i++)
 		{
+			double suma=0d;
 			for (int j = 0 ; j < maxColumnas ; j++)
-			{
-				primeraInstancia.add(i, primeraInstancia.get(i) + matrizNueva.get(i, j) * vector.get(j));
-			}
+				suma+= matrizNueva.get(i, j) * vector.get(j);// La matriz original multiplicada por el vector con el promedio de las filas (normalizado?) 
+			aux+=suma;									// Eso resulta en un vector. La suma de los elementos de ese vector se acumula en aux.
 		}
-		double promedio = 0;
-		for (int i = 0 ; i < maxFilas ; i++)
-		{
-			promedio += primeraInstancia.get(i) / vector.get(i);
-		}
-		promedio = ( (promedio / maxFilas ) - opciones.size() ) / (opciones.size()-1);
-		double indiceAleatorio = getIndiceAleatorio(opciones.size());
-		promedio = promedio / indiceAleatorio;
-		if (promedio < 0.1)
+		aux = ( (aux ) - maxFilas ) / (maxFilas-1);	//aux es CI
+		double indiceAleatorio = getIndiceAleatorio(maxFilas);//EL RI
+		aux = aux / indiceAleatorio;// CR=CI/RI
+		//Ahora aux es CR
+		if (aux < 0.1)
 			return true;
 		else
 			return false;
-	}*/
+	}
 
-	//TODO NUNCA USADO
-	/*
+	
 	public double getIndiceAleatorio(int size) {// Devuelve una aproximacion del RI. Extraida de internet(No estaba en las filminas)
 		return (1.98*(size-2))/size;
-	}*/
-	//TODO NUNCA USADO
-/*
-
+	}
 	public Matriz clone(Matriz mat){
 		Matriz matrizNueva = new Matriz(mat.maxFilas,mat.maxColumnas);
 		for(int i=0;i<matrizNueva.maxFilas;i++)
@@ -185,6 +175,20 @@ public class Matriz {
 				matrizNueva.set(i, j,mat.get(i, j));
 		return matrizNueva;
 	}
-	
-*/
+	public static void main( String [] args){ //EJEMPLO DEL TAHA. EN EL TAHA LES DA CON MENOS PRECISION.
+		Matriz m=new Matriz(3, 3);
+		m.set(0, 0, 1d);
+		m.set(0, 1, 1d/2d);
+		m.set(0, 2, 1d/5d);
+		m.set(1, 0, 2d);
+		m.set(1, 1, 1d);
+		m.set(1, 2, 1d/2d);
+		m.set(2, 0, 5d);
+		m.set(2, 1, 2d);
+		m.set(2, 2, 1d);
+		System.out.println(m.toString());// Para mostrar la matriz
+		System.out.println(m.getVector());// Para ver los promedios de las filas (normalizados?)
+		if(m.esConsistente())
+			System.out.println("La matriz de comparacion es consistente");
+	}
 }
