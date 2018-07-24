@@ -9,15 +9,16 @@ import model.Criterio;
 import model.CriterioCompuesto;
 import model.CriterioSimple;
 import model.Decisor;
+import model.Matriz;
 import model.Pc;
 
 public class PruebaCriteriosYSubcriterios {
 
 	public static void main(String[] args) {
-		CriterioSimple garantia = new CriterioSimple("garantia");
-		CriterioCompuesto financiacion = new CriterioCompuesto("financiacion");
-		CriterioSimple precio = new CriterioSimple("precio");
-		CriterioSimple cuotas = new CriterioSimple("cuotas");
+		CriterioSimple garantia = new CriterioSimple("garantia",Criterio.MAXIMISABLE,Criterio.OBJETIVO);
+		CriterioCompuesto financiacion = new CriterioCompuesto("financiacion",Criterio.MAXIMISABLE,Criterio.OBJETIVO);
+		CriterioSimple precio = new CriterioSimple("precio",Criterio.MINIMIZABLE,Criterio.OBJETIVO);
+		CriterioSimple cuotas = new CriterioSimple("cuotas",Criterio.MAXIMISABLE,Criterio.OBJETIVO);
 		financiacion.addSubcriterio(precio);
 		financiacion.addSubcriterio(cuotas);
 		Pc a1 = new Pc();
@@ -33,8 +34,8 @@ public class PruebaCriteriosYSubcriterios {
 		List<Pc> alternativas = new ArrayList<>();
 		alternativas.add(a1);
 		alternativas.add(a2);
-		Controller c = new Controller();
-		c.setAlternativas(alternativas);
+		//Controller c = new Controller();
+		//c.setAlternativas(alternativas);
 		garantia.setValor(2.0);
 		cuotas.setValor(3.0);
 		precio.setValor(13.0);
@@ -43,8 +44,11 @@ public class PruebaCriteriosYSubcriterios {
 		precio.setComparacion(cuotas, 5.0);
 		criterios.add(garantia);
 		criterios.add(financiacion);
-		c.setCriterios(criterios);
-		c.buscar();
+		Decisor d=new Decisor(alternativas);
+		Matriz matrizCriterios=new Matriz(2, 2);
+		d.calcular(matrizCriterios)
+		//c.setCriterios(criterios);
+		//c.buscar();
 	}
 
 }

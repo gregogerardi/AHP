@@ -8,14 +8,17 @@ public abstract class Criterio {
 	protected String nombre;
     protected Object valor;
 	//TODO NUNCA USADO, PARA IMPLEMENTAR OPTIMIZABLES CRECIENTE SY DECRECIENTES
-    /*public static int MAXIMISABLE = 1;
+    public static int MAXIMISABLE = 1;
     public static int MINIMIZABLE = -1;
-    */
+    protected int maxormin;
 	//TODO OPTIMISABLE PENDIENTE PARA CUANDO AGREGUEMOS CASOS COMO LA RAM, QUE ES MEJOR PASARSE QUE QUEDARSE CORTO, YA USADO PARA NO OPTIMISABLES NO COMENTAR
 	public static int NO_OPTIMIZABLE = 0;
+	public static int OBJETIVO = 1;
+	public static int SUBJETIVO = 0;
 	protected Hashtable<Criterio, Double> comps;
 	protected boolean numerico = true;
     protected int optimisable = 0;
+    protected int objetivo;
 	//TODO NUNCA USADO
 	//protected Criterio padre;
 	//TODO NUNCA USADO
@@ -26,7 +29,7 @@ public abstract class Criterio {
         return optimisable;
     }
 
-	public Criterio(String n) {
+	public Criterio(String n,int maxormin,int objetivo) {
 		this.nombre = n;
 		//TODO NUNCA USADO
 		//	padre = null;
@@ -35,8 +38,10 @@ public abstract class Criterio {
         valor = new Object();
 		ponderacion = new Double(0.0);
 		comps = new Hashtable<>();
+		this.maxormin=maxormin;
+		this.objetivo=objetivo;
 	}
-
+	
 	public void setNumerico(boolean numerico) {
 		this.numerico = numerico;
 	}
@@ -130,4 +135,14 @@ public abstract class Criterio {
 	public abstract void setMatriz(Matriz m);
 
 	public abstract List<Double> getPonderaciones();
+	
+	protected Double getMax(String atributo,List<Pc> alternativas){
+		Double max = -1.0;
+		for (Pc pc: alternativas){
+			if (Double.parseDouble(pc.get(atributo).toString()) > max)
+				max = Double.parseDouble(pc.get(atributo).toString());
+			}
+		return max;
+	}
+	
 }

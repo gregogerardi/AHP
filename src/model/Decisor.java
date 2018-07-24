@@ -73,64 +73,13 @@ public class Decisor {
 	}
 	
 	 //COMPARACION PAREADA ENTRE ALTERNATIVAS
-	 public void compararAlternativas() {
+	 public void compararAlternativas() {//Modificar, esto debberia ser realizado por cada criterio a partir de un valor esperado que puede ser nulo
 		List<Criterio> criteriosHojas = this.aplanarCriterios();
 		for (Criterio c: criteriosHojas) {
 			String atributo = c.getNombre();
 			Matriz m = new Matriz (alternativas.size(), alternativas.size());
 			//COMPARAR CADA PC RESPECTO A OTRA POR EL DATO PASADO Y DESPUES COMPLEMENTAR
-			for (int j=0; j<alternativas.size(); j++){
-				for (int k=j; k<alternativas.size(); k++){
-					if (k==j){
-						m.set(j, k, 1.0);
-					}
-					else {
-						Double valorFinal1 = 1.0;
-						Double valorFinal2 = 1.0;
-						if (c.isNumerico()) {
-							//TODO BUSCAR OTRA FORMA MENOS HORRIBLE DE CASTEAR A DOUBLE LOS VALORES QUE SEAN TIPO INTEGER QUE NO ME DEJA SIN PASAR POR EL MEDIO POR STRING
-							Double v1 = (Double.parseDouble(alternativas.get(j).get(atributo).toString()));
-							Double v2 = (Double.parseDouble(alternativas.get(k).get(atributo).toString()));
-							Double valorBuscado = (Double) c.getValor();
-							Double rangoValor = getMax(atributo);
-							if (c.getOptimisable() == Criterio.NO_OPTIMIZABLE) {
-								Double dif1;
-								Double dif2;
-								if (rangoValor != 0) {
-									dif1 = Math.abs(valorBuscado - v1) / rangoValor;
-									dif2 = Math.abs(valorBuscado - v2) / rangoValor;
-								} else {
-									dif1 = dif2 = valorBuscado;
-								}
-								if (dif1 <= dif2) {
-									valorFinal1 = escala.get(dif2 - dif1);
-									valorFinal2 = (1 / valorFinal1);
-								} else {
-									valorFinal2 = escala.get(dif1 - dif2);
-									valorFinal1 = (1 / valorFinal2);
-								}
-							}
-						} else {//para criterios por comparacion como la marca no cuantificados O los truefalse
-							Object v1 = alternativas.get(j).get(atributo);
-							Object v2 = alternativas.get(k).get(atributo);
-							Object valorBuscado = c.getValor();
-							//SI AMBAS PCS TIENEN LA MISMA MARCA, O AMBAS MARCAS SON DISTINTAS DE LA BUSCADA, EL VALOR COMPARATIVO ES 1
-							if ((v1.equals(v2)) || ((!v1.equals(valorBuscado)) && (!v2.equals(valorBuscado)))) {
-								valorFinal1 = valorFinal2 = 1.0;
-							} else { //una de las pcs coincide pero la otra no, se pone la maxima diferencia 9
-								if (v1.equals(valorBuscado)) {
-									valorFinal1 = 9.0;
-								} else {
-									valorFinal1 = 1.0 / 9;
-								}
-								valorFinal2 = 1 / valorFinal1;
-							}
-						}
-						m.set(j, k, valorFinal1);
-						m.set(k, j, valorFinal2);
-					}
-				}
-			}
+			m=( (CriterioSimple) c).getMatrizComparacionAlternativas(alternativas,escala);
 			matricesAlternativas.add(m);
 		}
 	}
@@ -164,7 +113,7 @@ public class Decisor {
 		}
 		return salida;
 	}
-	
+	/*
 	private Double getMax(String atributo){
 		Double max = -1.0;
 		for (Pc pc: alternativas){
@@ -172,7 +121,7 @@ public class Decisor {
 				max = Double.parseDouble(pc.get(atributo).toString());
 			}
 		return max;
-	}
+	}*/
 	
 	private void setComparacionCriterios(List<Criterio> criterios, Matriz matrizComparadora){
 	//OBTIENE EL VECTOR DE COMPARACION DE CRITERIOS PARA TODOS LOS CRITERIOS DE UN NIVEL Y SI TIENE SUBCRITERIOS LLAMA RECURSIVAMENTE

@@ -92,11 +92,24 @@ public class Matriz {
 	public void complementar (){
 		for (int f = 1; f<this.filas(); f++){
 			for (int c=0; c<f; c++){
-				this.set(f, c, 1/this.get(c, f));
+				double aux=this.get(c, f);
+				assert(aux!=0);
+				this.set(f, c, 1/aux);
 			}
 		}
 	}
 	
+	
+	public void invertir(){
+		for (int f = 1; f<this.filas(); f++){
+			for (int c=0; c<f; c++){
+				double aux=this.get(c, f);
+				assert(aux!=0);
+				this.set(c, f, 1/aux);
+			}
+		}
+		this.complementar();	
+	}
 	public void addFila(Vector<Double>vect){ //Este metodo tenia el mismo problema que addColumna 
 		double[][] nueva = new double[maxFilas+1][vect.size()];
 		for (int f=0; f<maxFilas; f++)
@@ -143,6 +156,7 @@ public class Matriz {
 			text=text+"]";
 		return text;
 	}
+	
 	public boolean esConsistente() {	//se tiene/puede que llamar con la matriz sin normalizar.Creo que funciona igual (por eso el /puede)
 		Matriz matrizNueva = clone(this);
 		Vector<Double> vector = getVector();

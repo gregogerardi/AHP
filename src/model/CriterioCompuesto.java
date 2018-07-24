@@ -8,8 +8,8 @@ public class CriterioCompuesto extends Criterio {
 	private List<Criterio> subcriterios;
 	private Matriz comparacionPareadaSubcriterios;
 	
-	public CriterioCompuesto(String nombre) {
-		super(nombre);
+	public CriterioCompuesto(String nombre,int maxormin, int objetivo) {
+		super(nombre,maxormin,objetivo);
 		subcriterios = new ArrayList<>();
 	}
 	

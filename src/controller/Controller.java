@@ -159,68 +159,68 @@ public class Controller {
         criterios = new ArrayList<>();
 
         //criterios simples para busqueda avanzada
-        Criterio criterioPrecio = new CriterioSimple(Globals.precio);
+        Criterio criterioPrecio = new CriterioSimple(Globals.precio,Criterio.MINIMIZABLE,Criterio.OBJETIVO);
         criterios.add(criterioPrecio);
         criterioPrecio.setValor((Double) valoresBuscados[0]);
 
-        Criterio criterioMarca = new CriterioSimple(Globals.marca);
+        Criterio criterioMarca = new CriterioSimple(Globals.marca,Criterio.MAXIMISABLE,Criterio.SUBJETIVO);
         criterioMarca.setNumerico(false);
         criterios.add(criterioMarca);
         criterioMarca.setValor(valoresBuscados[1]);
 
-        Criterio criterioProcesador = new CriterioSimple(Globals.procesador);
+        Criterio criterioProcesador = new CriterioSimple(Globals.procesador,Criterio.MAXIMISABLE,Criterio.OBJETIVO);
         criterios.add(criterioProcesador);
         criterioProcesador.setValor(((Integer) valoresBuscados[2]).doubleValue());
 
-        Criterio criterioPeso = new CriterioSimple(Globals.peso);
+        Criterio criterioPeso = new CriterioSimple(Globals.peso,Criterio.MINIMIZABLE,Criterio.OBJETIVO);
         criterios.add(criterioPeso);
         criterioPeso.setValor(((Integer) valoresBuscados[3]).doubleValue());
 
-        Criterio criterioRam = new CriterioSimple(Globals.ram);
+        Criterio criterioRam = new CriterioSimple(Globals.ram,Criterio.MAXIMISABLE,Criterio.OBJETIVO);
         criterios.add(criterioRam);
         criterioRam.setValor(((Integer) valoresBuscados[4]).doubleValue());
 
-        Criterio criterioDisco = new CriterioSimple(Globals.disco);
+        Criterio criterioDisco = new CriterioSimple(Globals.disco,Criterio.MAXIMISABLE,Criterio.OBJETIVO);
         criterios.add(criterioDisco);
         criterioDisco.setValor(((Integer) valoresBuscados[5]).doubleValue());
 
-        Criterio criterioAutonomia = new CriterioSimple(Globals.autonomia);
+        Criterio criterioAutonomia = new CriterioSimple(Globals.autonomia,Criterio.MAXIMISABLE,Criterio.OBJETIVO);
         criterios.add(criterioAutonomia);
         criterioAutonomia.setValor(((Integer) valoresBuscados[6]).doubleValue());
 
-        Criterio criterioPantalla = new CriterioSimple(Globals.pantalla);
+        Criterio criterioPantalla = new CriterioSimple(Globals.pantalla,Criterio.MAXIMISABLE,Criterio.SUBJETIVO);
         criterios.add(criterioPantalla);
         criterioPantalla.setValor((Double.parseDouble((String) valoresBuscados[7])));
 
-        Criterio criterioWifi = new CriterioSimple(Globals.wifi);
+        Criterio criterioWifi = new CriterioSimple(Globals.wifi,Criterio.MAXIMISABLE,Criterio.SUBJETIVO);
         criterioWifi.setValor(valoresBuscados[8]);
         criterioWifi.setNumerico(false);
 
-        Criterio criterioEthernet = new CriterioSimple(Globals.ethernet);
+        Criterio criterioEthernet = new CriterioSimple(Globals.ethernet,Criterio.MAXIMISABLE,Criterio.SUBJETIVO);
         criterioEthernet.setValor(valoresBuscados[9]);
         criterioEthernet.setNumerico(false);
 
-        Criterio criterioHdmi = new CriterioSimple(Globals.hdmi);
+        Criterio criterioHdmi = new CriterioSimple(Globals.hdmi,Criterio.MAXIMISABLE,Criterio.SUBJETIVO);
         criterioHdmi.setValor(valoresBuscados[10]);
         criterioHdmi.setNumerico(false);
 
-        Criterio criterioCddvd = new CriterioSimple(Globals.cddvd);
+        Criterio criterioCddvd = new CriterioSimple(Globals.cddvd,Criterio.MAXIMISABLE,Criterio.SUBJETIVO);
         criterioCddvd.setValor(valoresBuscados[11]);
         criterioCddvd.setNumerico(false);
 
-        Criterio criterioUsb = new CriterioSimple(Globals.usb);
+        Criterio criterioUsb = new CriterioSimple(Globals.usb,Criterio.MAXIMISABLE,Criterio.SUBJETIVO);
         criterioUsb.setValor(Double.parseDouble((String) valoresBuscados[12]));
 
-        Criterio criterioBluethoot = new CriterioSimple(Globals.bluethoot);
+        Criterio criterioBluethoot = new CriterioSimple(Globals.bluethoot,Criterio.MAXIMISABLE,Criterio.SUBJETIVO);
         criterioBluethoot.setValor(valoresBuscados[13]);
         criterioBluethoot.setNumerico(false);
 
-        Criterio criterioVga = new CriterioSimple(Globals.vga);
+        Criterio criterioVga = new CriterioSimple(Globals.vga,Criterio.MAXIMISABLE,Criterio.SUBJETIVO);
         criterioVga.setValor(valoresBuscados[14]);
         criterioVga.setNumerico(false);
 
         //conectividad como criterio compuesto
-        CriterioCompuesto criterioConectividad = new CriterioCompuesto(Globals.conectividad);
+        CriterioCompuesto criterioConectividad = new CriterioCompuesto(Globals.conectividad,Criterio.MAXIMISABLE,Criterio.SUBJETIVO);
         criterioConectividad.addSubcriterio(criterioWifi);
         criterioConectividad.addSubcriterio(criterioEthernet);
         criterioConectividad.addSubcriterio(criterioHdmi);
