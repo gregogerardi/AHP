@@ -199,6 +199,7 @@ public class AgregarEquipo extends Visible {
                     };
                     if (controlador.agregarPc(valores)) {
                         JOptionPane.showMessageDialog(null, "Agregado " + textModelo.getText() + " correctamente", "Correcto", JOptionPane.INFORMATION_MESSAGE);
+                        cambiarAAnterior();
                     } else {
                         JOptionPane.showMessageDialog(null, "El modelo " + textModelo.getText() + " ya se encuentra cargado", "Incorrecto", JOptionPane.ERROR_MESSAGE);
                     }

@@ -182,7 +182,8 @@ public class Matriz {
 	public double getIndiceAleatorio(int size) {// Devuelve una aproximacion del RI. Extraida de internet(No estaba en las filminas)
 		return (1.98*(size-2))/size;
 	}
-	public Matriz clone(Matriz mat){
+
+    public Matriz clone(Matriz mat){
 		Matriz matrizNueva = new Matriz(mat.maxFilas,mat.maxColumnas);
 		for(int i=0;i<matrizNueva.maxFilas;i++)
 			for(int j=0;j<matrizNueva.maxColumnas;j++)
