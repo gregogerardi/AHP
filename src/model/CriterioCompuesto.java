@@ -7,13 +7,19 @@ public class CriterioCompuesto extends Criterio {
 	
 	private List<Criterio> subcriterios;
 	private Matriz comparacionPareadaSubcriterios;
-	
-	public CriterioCompuesto(String nombre,int maxormin, int objetivo) {
-		super(nombre,maxormin,objetivo);
+
+    //public CriterioCompuesto(String nombre,int maxormin, int objetivo) {
+    public CriterioCompuesto(String nombre, int optimisable) {
+        super(nombre, optimisable);
+        subcriterios = new ArrayList<>();
+    }
+
+    public CriterioCompuesto(String nombre) {
+        super(nombre, Criterio.SUBJETIVO); //todo irrelevante el sibjetivo, es un compuesto solo lo pide el constructor porque nos quedo todo mal diseñado
 		subcriterios = new ArrayList<>();
 	}
-	
-	public void addSubcriterio(Criterio c){
+
+    public void addSubcriterio(Criterio c){
 		subcriterios.add(c);
 	}
 	

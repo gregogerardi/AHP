@@ -16,6 +16,7 @@ public class Controller {
     // private List<Object> datosIngresados;
     private List<Criterio> criterios;
     private List<Pc> alternativas;
+    public final static boolean IGNORAR_INCONSISTENCIA = true;
 
     private Pc generarPc(Object[] valores) {
         Pc pc = new Pc();
@@ -143,13 +144,19 @@ public class Controller {
         return filtradas;
     }*/
 
+    public List<Score> buscar() throws InconsistenteException {
+        return buscar(false);
+    }
 
-    public List<Score> buscar() {
+    public List<Score> buscar(Boolean ingorarInconsistencia) throws InconsistenteException {
         //List<Pc> opciones = this.getFiltradas(); ESTO VA
         decisor = new Decisor(recuperarPcsBase());  //CAMBIAR ALTERNATIVAS POR OPCIONES
         decisor.setCriterios(criterios);
         //ARMA LA MATRIZ DE COMPARACION DE CRITERIOS PADRES Y DE SUBCRITERIOS PONIENDOLOS EN LOS CRITERIOS COMPUESTOS
         Matriz comparacionDeCriterios = decisor.getMatrizComparacionCriterios();//SEGUIR CON ESTA MATRIZ
+        if ((!comparacionDeCriterios.esConsistente()) && (!ingorarInconsistencia)) {
+            throw new InconsistenteException();
+        }
         //ARMA LAS MATRICES DE COMPARACIONES ENTRE ALTERNATIVAS PARA CADA CRITERIO HOJA
         decisor.compararAlternativas();
         return decisor.calcular(comparacionDeCriterios);
@@ -159,68 +166,68 @@ public class Controller {
         criterios = new ArrayList<>();
 
         //criterios simples para busqueda avanzada
-        Criterio criterioPrecio = new CriterioSimple(Globals.precio,Criterio.MINIMIZABLE,Criterio.OBJETIVO);
+        Criterio criterioPrecio = new CriterioSimple(Globals.precio, Criterio.MINIMIZABLE);
         criterios.add(criterioPrecio);
-        criterioPrecio.setValor((Double) valoresBuscados[0]);
+        //criterioPrecio.setValor((Double) valoresBuscados[0]);
 
-        Criterio criterioMarca = new CriterioSimple(Globals.marca,Criterio.MAXIMISABLE,Criterio.SUBJETIVO);
+        Criterio criterioMarca = new CriterioSimple(Globals.marca);
         criterioMarca.setNumerico(false);
         criterios.add(criterioMarca);
-        criterioMarca.setValor(valoresBuscados[1]);
+        criterioMarca.setValor(valoresBuscados[0]);
 
-        Criterio criterioProcesador = new CriterioSimple(Globals.procesador,Criterio.MAXIMISABLE,Criterio.OBJETIVO);
+        Criterio criterioProcesador = new CriterioSimple(Globals.procesador, Criterio.MAXIMISABLE);
         criterios.add(criterioProcesador);
-        criterioProcesador.setValor(((Integer) valoresBuscados[2]).doubleValue());
+        //criterioProcesador.setValor(((Integer) valoresBuscados[2]).doubleValue());
 
-        Criterio criterioPeso = new CriterioSimple(Globals.peso,Criterio.MINIMIZABLE,Criterio.OBJETIVO);
+        Criterio criterioPeso = new CriterioSimple(Globals.peso, Criterio.MINIMIZABLE);
         criterios.add(criterioPeso);
-        criterioPeso.setValor(((Integer) valoresBuscados[3]).doubleValue());
+        //criterioPeso.setValor(((Integer) valoresBuscados[3]).doubleValue());
 
-        Criterio criterioRam = new CriterioSimple(Globals.ram,Criterio.MAXIMISABLE,Criterio.OBJETIVO);
+        Criterio criterioRam = new CriterioSimple(Globals.ram, Criterio.MAXIMISABLE);
         criterios.add(criterioRam);
-        criterioRam.setValor(((Integer) valoresBuscados[4]).doubleValue());
+        //criterioRam.setValor(((Integer) valoresBuscados[4]).doubleValue());
 
-        Criterio criterioDisco = new CriterioSimple(Globals.disco,Criterio.MAXIMISABLE,Criterio.OBJETIVO);
+        Criterio criterioDisco = new CriterioSimple(Globals.disco, Criterio.MAXIMISABLE);
         criterios.add(criterioDisco);
-        criterioDisco.setValor(((Integer) valoresBuscados[5]).doubleValue());
+        //criterioDisco.setValor(((Integer) valoresBuscados[5]).doubleValue());
 
-        Criterio criterioAutonomia = new CriterioSimple(Globals.autonomia,Criterio.MAXIMISABLE,Criterio.OBJETIVO);
+        Criterio criterioAutonomia = new CriterioSimple(Globals.autonomia, Criterio.MAXIMISABLE);
         criterios.add(criterioAutonomia);
-        criterioAutonomia.setValor(((Integer) valoresBuscados[6]).doubleValue());
+        //criterioAutonomia.setValor(((Integer) valoresBuscados[6]).doubleValue());
 
-        Criterio criterioPantalla = new CriterioSimple(Globals.pantalla,Criterio.MAXIMISABLE,Criterio.SUBJETIVO);
+        Criterio criterioPantalla = new CriterioSimple(Globals.pantalla, Criterio.SUBJETIVO);
         criterios.add(criterioPantalla);
-        criterioPantalla.setValor((Double.parseDouble((String) valoresBuscados[7])));
+        criterioPantalla.setValor((Double.parseDouble((String) valoresBuscados[1])));
 
-        Criterio criterioWifi = new CriterioSimple(Globals.wifi,Criterio.MAXIMISABLE,Criterio.SUBJETIVO);
-        criterioWifi.setValor(valoresBuscados[8]);
+        Criterio criterioWifi = new CriterioSimple(Globals.wifi);
+        criterioWifi.setValor(valoresBuscados[2]);
         criterioWifi.setNumerico(false);
 
-        Criterio criterioEthernet = new CriterioSimple(Globals.ethernet,Criterio.MAXIMISABLE,Criterio.SUBJETIVO);
-        criterioEthernet.setValor(valoresBuscados[9]);
+        Criterio criterioEthernet = new CriterioSimple(Globals.ethernet);
+        criterioEthernet.setValor(valoresBuscados[3]);
         criterioEthernet.setNumerico(false);
 
-        Criterio criterioHdmi = new CriterioSimple(Globals.hdmi,Criterio.MAXIMISABLE,Criterio.SUBJETIVO);
-        criterioHdmi.setValor(valoresBuscados[10]);
+        Criterio criterioHdmi = new CriterioSimple(Globals.hdmi);
+        criterioHdmi.setValor(valoresBuscados[4]);
         criterioHdmi.setNumerico(false);
 
-        Criterio criterioCddvd = new CriterioSimple(Globals.cddvd,Criterio.MAXIMISABLE,Criterio.SUBJETIVO);
-        criterioCddvd.setValor(valoresBuscados[11]);
+        Criterio criterioCddvd = new CriterioSimple(Globals.cddvd);
+        criterioCddvd.setValor(valoresBuscados[5]);
         criterioCddvd.setNumerico(false);
 
-        Criterio criterioUsb = new CriterioSimple(Globals.usb,Criterio.MAXIMISABLE,Criterio.SUBJETIVO);
-        criterioUsb.setValor(Double.parseDouble((String) valoresBuscados[12]));
+        Criterio criterioUsb = new CriterioSimple(Globals.usb, Criterio.MAXIMISABLE);
+        //criterioUsb.setValor(Double.parseDouble((String) valoresBuscados[12]));
 
-        Criterio criterioBluethoot = new CriterioSimple(Globals.bluethoot,Criterio.MAXIMISABLE,Criterio.SUBJETIVO);
-        criterioBluethoot.setValor(valoresBuscados[13]);
+        Criterio criterioBluethoot = new CriterioSimple(Globals.bluethoot);
+        criterioBluethoot.setValor(valoresBuscados[6]);
         criterioBluethoot.setNumerico(false);
 
-        Criterio criterioVga = new CriterioSimple(Globals.vga,Criterio.MAXIMISABLE,Criterio.SUBJETIVO);
-        criterioVga.setValor(valoresBuscados[14]);
+        Criterio criterioVga = new CriterioSimple(Globals.vga);
+        criterioVga.setValor(valoresBuscados[7]);
         criterioVga.setNumerico(false);
 
         //conectividad como criterio compuesto
-        CriterioCompuesto criterioConectividad = new CriterioCompuesto(Globals.conectividad,Criterio.MAXIMISABLE,Criterio.SUBJETIVO);
+        CriterioCompuesto criterioConectividad = new CriterioCompuesto(Globals.conectividad);
         criterioConectividad.addSubcriterio(criterioWifi);
         criterioConectividad.addSubcriterio(criterioEthernet);
         criterioConectividad.addSubcriterio(criterioHdmi);
@@ -229,6 +236,9 @@ public class Controller {
         criterioConectividad.addSubcriterio(criterioBluethoot);
         criterioConectividad.addSubcriterio(criterioVga);
         criterios.add(criterioConectividad);
+    }
+
+    public class InconsistenteException extends Exception {
     }
 
     public List<Criterio> getCriterios() {

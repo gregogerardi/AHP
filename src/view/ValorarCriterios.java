@@ -39,14 +39,15 @@ public class ValorarCriterios extends Visible {
         buscarButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
+
                 cambiarAResultados();
             }
         });
     }
 
     private void cambiarAResultados() {
-        new Resultados(this, controlador).cargar();
         this.descargar();
+        new Resultados(this, controlador).cargar();
     }
 
     @Override

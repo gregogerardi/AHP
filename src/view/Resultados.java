@@ -18,6 +18,7 @@ public class Resultados extends Visible {
     private JPanel resultadosDatos;
     private JButton buscarButton;
     private JPanel resultadosMarco;
+    private boolean inconsistente = false;
 
     public Resultados(Visible ventanaAnterior, Controller controlador) {
         setVentanaAnterior(ventanaAnterior);
@@ -39,6 +40,12 @@ public class Resultados extends Visible {
     @Override
     public void cargar() {
         super.cargar();
+        if (inconsistente) {
+            int resp = JOptionPane.showConfirmDialog(null, "Las ponderaciones entre criterios no son consistentes, realicelas nuevamente, o los resultados podrian no ser los óptimos, ¿desea volver a configurarlos?", "Advertencia inconsistente!", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
+            if (resp == JOptionPane.YES_OPTION) {
+                cambiarAAnterior();
+            }
+        }
     }
 
     private void generarResultados(List<Score> resultados) {
@@ -54,7 +61,16 @@ public class Resultados extends Visible {
         // TODO: place custom component creation code here
         resultadosDatos = new JPanel();
         resultadosDatos.setLayout(new BoxLayout(resultadosDatos, BoxLayout.Y_AXIS));
-        generarResultados(controlador.buscar());
+        try {
+            generarResultados(controlador.buscar());
+        } catch (Controller.InconsistenteException e) {
+            inconsistente = true;
+            try {
+                generarResultados(controlador.buscar(Controller.IGNORAR_INCONSISTENCIA));
+            } catch (Controller.InconsistenteException e1) { //IMPOSIBLE QUE OCURRA, PERO PIDE JAVA EL TRY CATCH
+                e1.printStackTrace();
+            }
+        }
     }
 
     /**

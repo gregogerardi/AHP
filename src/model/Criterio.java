@@ -5,31 +5,40 @@ import java.util.Hashtable;
 import java.util.List;
 
 public abstract class Criterio {
+    //TODO !!!
+    //TODO LOS CRITERIOS OBJETIVOS AL PEDO TIENEN EL VALOR valor. DEBERIA HABER UNA HERENCIA MAS DE CLASES ENTRE CRITERIO, LOS NUMERICOS Y BOOLEANOS, Y DENTRO DE LOS NUMERICOS LOS OBJETIVOS MAXIMISABLES/MINIMISABLES Y LOS SUBJETIVOS, Y NO HACER TODO A LO CROTO CON BOOLEANOS
+    //TODO !!!
+
 	protected String nombre;
     protected Object valor;
-	//TODO NUNCA USADO, PARA IMPLEMENTAR OPTIMIZABLES CRECIENTE SY DECRECIENTES
     public static int MAXIMISABLE = 1;
     public static int MINIMIZABLE = -1;
-    protected int maxormin;
-	//TODO OPTIMISABLE PENDIENTE PARA CUANDO AGREGUEMOS CASOS COMO LA RAM, QUE ES MEJOR PASARSE QUE QUEDARSE CORTO, YA USADO PARA NO OPTIMISABLES NO COMENTAR
-	public static int NO_OPTIMIZABLE = 0;
-	public static int OBJETIVO = 1;
+    //TODO NUNCA USADO REDUNDANTE
+    //protected int maxormin;
 	public static int SUBJETIVO = 0;
-	protected Hashtable<Criterio, Double> comps;
+    //TODO NUNCA USADO SON REDUNDANTES, CON MAXIMISABLE MINIMISABLE Y SUBJETIVO ALCANZA
+    //public static int OBJETIVO = 1;
+    //public static int SUBJETIVO = 0;
+    protected Hashtable<Criterio, Double> comps;
 	protected boolean numerico = true;
     protected int optimisable = 0;
-    protected int objetivo;
+    //TODO NUNCA USADO TAMBIEN REDUNDANTE
+    //protected int objetivo;
 	//TODO NUNCA USADO
 	//protected Criterio padre;
 	//TODO NUNCA USADO
 //	protected Hashtable<Criterio, JSlider> comparaciones;
 	protected Double ponderacion;
 
+    //TODO INNESESARIO AL PASAR EL COMPARAR MATRIZ A LA SUBCLASE CRITERIO SIMPLE, SE PREGUNTA DIRECTO POR EL INT PROTECTED
+	/*
     public int getOptimisable() {
         return optimisable;
     }
+*/
 
-	public Criterio(String n,int maxormin,int objetivo) {
+    //	public Criterio(String n,int maxormin,int objetivo) {
+    public Criterio(String n, int optimisable) {
 		this.nombre = n;
 		//TODO NUNCA USADO
 		//	padre = null;
@@ -38,8 +47,10 @@ public abstract class Criterio {
         valor = new Object();
 		ponderacion = new Double(0.0);
 		comps = new Hashtable<>();
-		this.maxormin=maxormin;
-		this.objetivo=objetivo;
+        this.optimisable = optimisable;
+        //TODO INNESESARIOS
+/*		this.maxormin=maxormin;
+		this.objetivo=objetivo;*/
 	}
 	
 	public void setNumerico(boolean numerico) {

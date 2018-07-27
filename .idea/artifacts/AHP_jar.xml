@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="AHP:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/AHP_jar</output-path>
+    <root id="archive" name="AHP.jar">
+      <element id="module-output" name="AHP" />
+    </root>
+  </artifact>
+</component>
