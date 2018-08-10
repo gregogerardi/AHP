@@ -41,7 +41,7 @@ public class Resultados extends Visible {
     public void cargar() {
         super.cargar();
         if (inconsistente) {
-            int resp = JOptionPane.showConfirmDialog(null, "Las ponderaciones entre criterios no son consistentes, realicelas nuevamente, o los resultados podrian no ser los óptimos, ¿desea volver a configurarlos?", "Advertencia inconsistente!", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
+            int resp = JOptionPane.showConfirmDialog(null, "Las ponderaciones entre criterios no son consistentes, realicelas nuevamente, o los resultados podrian no ser los óptimos, ¿desea modificarlos? \n si ve esta advertencia seguido se sugiere utilizar los valores predeterminados", "Advertencia inconsistente!", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
             if (resp == JOptionPane.YES_OPTION) {
                 cambiarAAnterior();
             }
