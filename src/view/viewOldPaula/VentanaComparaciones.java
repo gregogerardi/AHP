@@ -15,7 +15,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 public class VentanaComparaciones extends JFrame {
-
+//probando intellij VCS
     private JPanel contentPane;
     private Controller controlador;
     private List<JSlider> sliders;
