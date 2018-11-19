@@ -18,8 +18,9 @@ public class Globals {
     public static String usb = "USB";
     public static String bluethoot = "bluethoot";
     public static String vga = "VGA";
+    public static String cae = "CAE";
     public static String[] atributos = {modelo, precio, marca, procesador, peso, ram, disco, autonomia,
-            pantalla, wifi, ethernet, hdmi, cddvd, usb, bluethoot, vga};
+            pantalla, wifi, ethernet, hdmi, cddvd, usb, bluethoot, vga, cae};
     public static String[] escala = {
             "sin uso"
             , "levemente mas importante"

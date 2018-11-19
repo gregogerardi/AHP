@@ -18,6 +18,7 @@ public class Controller {
     private List<Pc> alternativas;
     public final static boolean IGNORAR_INCONSISTENCIA = true;
 
+
     private Pc generarPc(Object[] valores) {
         Pc pc = new Pc();
         for (int i = 0; i < Globals.atributos.length; i++) {
@@ -236,6 +237,9 @@ public class Controller {
         criterioConectividad.addSubcriterio(criterioBluethoot);
         criterioConectividad.addSubcriterio(criterioVga);
         criterios.add(criterioConectividad);
+
+        Criterio criterioReemplazo = new CriterioSimple(Globals.cae, Criterio.MINIMIZABLE);
+        criterios.add(criterioReemplazo);
     }
 
     public class InconsistenteException extends Exception {
