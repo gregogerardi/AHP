@@ -84,6 +84,7 @@ public class Controller {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        //CAE.setINTERES(CAE.INTERES);
         return pcs;
     }
     //TODO NUNCA USADO
@@ -200,6 +201,9 @@ public class Controller {
         criterios.add(criterioPantalla);
         criterioPantalla.setValor((Double.parseDouble((String) valoresBuscados[1])));
 
+        Criterio criterioReemplazo = new CriterioCAE(Globals.cae, Criterio.MINIMIZABLE);
+        criterios.add(criterioReemplazo);
+
         Criterio criterioWifi = new CriterioSimple(Globals.wifi);
         criterioWifi.setValor(valoresBuscados[2]);
         criterioWifi.setNumerico(false);
@@ -238,8 +242,7 @@ public class Controller {
         criterioConectividad.addSubcriterio(criterioVga);
         criterios.add(criterioConectividad);
 
-        Criterio criterioReemplazo = new CriterioSimple(Globals.cae, Criterio.MINIMIZABLE);
-        criterios.add(criterioReemplazo);
+
     }
 
     public class InconsistenteException extends Exception {
