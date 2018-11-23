@@ -266,6 +266,7 @@ public class AgregarEquipo extends Visible {
             public void mouseClicked(MouseEvent e) {
                 counterCostos = 1;
                 costosString = "";
+                costos.clear();
                 costosPeriodosText.setText("Costos por periodo (OPCIONAL)");
             }
         });
