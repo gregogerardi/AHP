@@ -179,9 +179,9 @@ public class AgregarEquipo extends Visible {
                     textPrecio.setText("0");
                     precio = 0;
                 }
-                if (precio > 50000) {
-                    textPrecio.setText("50000");
-                    precio = 50000;
+                if (precio > 200000) {
+                    textPrecio.setText("200000");
+                    precio = 200000;
                 }
                 if (valido) {
 
@@ -253,9 +253,9 @@ public class AgregarEquipo extends Visible {
                     String costoS = textoCosto.getText().toString();
                     costos.add(costoD);
                     if (costosString.isEmpty())
-                        costosString = "|||" + costoS + "|<-" + counterCostos + "|";
+                        costosString = "|||" + costoS + "|<-Periodo " + counterCostos + "||";
                     else
-                        costosString += costoS + "|<-" + counterCostos + "|";
+                        costosString += costoS + "|<-Periodo " + counterCostos + "||";
                     counterCostos++;
                     costosPeriodosText.setText(costosString);
                 }

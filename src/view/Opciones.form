@@ -11,7 +11,7 @@
       <scrollpane id="bb64e" binding="OpcionesMarco">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="1100" height="900"/>
+            <preferred-size width="700" height="500"/>
           </grid>
         </constraints>
         <properties/>
@@ -63,13 +63,6 @@
                   <text value=""/>
                 </properties>
               </component>
-              <hspacer id="1bcfb">
-                <constraints>
-                  <grid row="12" column="11" row-span="8" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                    <maximum-size width="50" height="-1"/>
-                  </grid>
-                </constraints>
-              </hspacer>
               <hspacer id="786d6">
                 <constraints>
                   <grid row="9" column="8" row-span="1" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
@@ -88,53 +81,9 @@
                   <grid row="8" column="1" row-span="1" col-span="10" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
-              <vspacer id="df537">
-                <constraints>
-                  <grid row="12" column="6" row-span="1" col-span="5" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                </constraints>
-              </vspacer>
-              <hspacer id="86be2">
-                <constraints>
-                  <grid row="13" column="8" row-span="1" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="5" height="-1"/>
-                    <maximum-size width="5" height="-1"/>
-                  </grid>
-                </constraints>
-              </hspacer>
-              <vspacer id="8bdf9">
-                <constraints>
-                  <grid row="14" column="1" row-span="1" col-span="10" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                </constraints>
-              </vspacer>
-              <hspacer id="f4d8">
-                <constraints>
-                  <grid row="15" column="8" row-span="1" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="5" height="42"/>
-                    <maximum-size width="5" height="-1"/>
-                  </grid>
-                </constraints>
-              </hspacer>
-              <vspacer id="61f03">
-                <constraints>
-                  <grid row="16" column="5" row-span="1" col-span="6" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                </constraints>
-              </vspacer>
-              <hspacer id="c3c77">
-                <constraints>
-                  <grid row="19" column="8" row-span="1" col-span="1" vsize-policy="1" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="5" height="-1"/>
-                    <maximum-size width="5" height="-1"/>
-                  </grid>
-                </constraints>
-              </hspacer>
               <vspacer id="3efd9">
                 <constraints>
                   <grid row="20" column="1" row-span="1" col-span="13" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                </constraints>
-              </vspacer>
-              <vspacer id="b9290">
-                <constraints>
-                  <grid row="18" column="1" row-span="1" col-span="10" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
               <vspacer id="cb6ad">
@@ -150,26 +99,6 @@
               <vspacer id="ab4c4">
                 <constraints>
                   <grid row="10" column="12" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                </constraints>
-              </vspacer>
-              <vspacer id="e5bbe">
-                <constraints>
-                  <grid row="12" column="12" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                </constraints>
-              </vspacer>
-              <vspacer id="f2ea6">
-                <constraints>
-                  <grid row="14" column="12" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                </constraints>
-              </vspacer>
-              <vspacer id="8dc02">
-                <constraints>
-                  <grid row="16" column="12" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                </constraints>
-              </vspacer>
-              <vspacer id="d5ebc">
-                <constraints>
-                  <grid row="18" column="12" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
               <vspacer id="826c">
@@ -339,14 +268,19 @@
               </component>
               <component id="7b266" class="javax.swing.JLabel" binding="textoDepreciacion">
                 <constraints>
-                  <grid row="9" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="9" column="1" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <font size="18"/>
                   <horizontalAlignment value="0"/>
-                  <text value="Depreciacion por periodo promedio"/>
+                  <text value="Depreciacion promedio por periodo"/>
                 </properties>
               </component>
+              <hspacer id="1d920">
+                <constraints>
+                  <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
             </children>
           </grid>
         </children>

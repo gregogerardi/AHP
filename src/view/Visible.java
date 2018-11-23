@@ -15,7 +15,7 @@ public abstract class Visible {
     }
 
     public void cargar() {
-        frame = new JFrame("Asistente Inteligente");
+        frame = new JFrame("PC Browser");
         setContent();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();

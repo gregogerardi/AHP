@@ -11,7 +11,7 @@
       <scrollpane id="9718c" binding="busquedaAvanzadaMarco">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="1" use-parent-layout="false">
-            <preferred-size width="500" height="500"/>
+            <preferred-size width="500" height="300"/>
           </grid>
         </constraints>
         <properties/>
@@ -87,32 +87,7 @@
               </hspacer>
               <vspacer id="2d237">
                 <constraints>
-                  <grid row="4" column="1" row-span="1" col-span="3" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                </constraints>
-              </vspacer>
-              <vspacer id="7fe8f">
-                <constraints>
-                  <grid row="6" column="1" row-span="1" col-span="3" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                </constraints>
-              </vspacer>
-              <vspacer id="5e5df">
-                <constraints>
-                  <grid row="10" column="1" row-span="1" col-span="3" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                </constraints>
-              </vspacer>
-              <vspacer id="8e09e">
-                <constraints>
-                  <grid row="8" column="1" row-span="1" col-span="3" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                </constraints>
-              </vspacer>
-              <vspacer id="4a98a">
-                <constraints>
-                  <grid row="12" column="1" row-span="1" col-span="3" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                </constraints>
-              </vspacer>
-              <vspacer id="cdfa4">
-                <constraints>
-                  <grid row="14" column="1" row-span="1" col-span="3" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                  <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
               <vspacer id="196f7">
@@ -177,64 +152,6 @@
                   <grid row="0" column="4" row-span="15" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
               </hspacer>
-              <component id="798de" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="7" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <font size="18"/>
-                  <horizontalAlignment value="0"/>
-                  <text value="Conectividad:"/>
-                </properties>
-              </component>
-              <component id="cffbb" class="javax.swing.JRadioButton" binding="radioWifi">
-                <constraints>
-                  <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="WiFi"/>
-                </properties>
-              </component>
-              <component id="b971c" class="javax.swing.JRadioButton" binding="radioEthernet">
-                <constraints>
-                  <grid row="9" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Ethernet"/>
-                </properties>
-              </component>
-              <component id="a3d42" class="javax.swing.JRadioButton" binding="radioHdmi">
-                <constraints>
-                  <grid row="11" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Hdmi"/>
-                </properties>
-              </component>
-              <component id="7e6fb" class="javax.swing.JRadioButton" binding="radioCDDVD">
-                <constraints>
-                  <grid row="11" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="CD/DVD"/>
-                </properties>
-              </component>
-              <component id="2912d" class="javax.swing.JRadioButton" binding="radioBluethoot">
-                <constraints>
-                  <grid row="13" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Bluethoot"/>
-                </properties>
-              </component>
-              <component id="adea0" class="javax.swing.JRadioButton" binding="radioVGA">
-                <constraints>
-                  <grid row="13" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="VGA"/>
-                </properties>
-              </component>
               <component id="d9752" class="javax.swing.JLabel" binding="lblPantalla">
                 <constraints>
                   <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
@@ -266,6 +183,11 @@
                   </model>
                 </properties>
               </component>
+              <vspacer id="8cc07">
+                <constraints>
+                  <grid row="9" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
             </children>
           </grid>
         </children>

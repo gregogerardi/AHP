@@ -1,6 +1,7 @@
 package view;
 
 import controller.Controller;
+import model.CAE;
 import model.Globals;
 import model.Pc;
 
@@ -9,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -114,6 +116,26 @@ public class Inventario extends Visible {
     private void cargarTablaModel() {
         List<Pc> pcs = controlador.recuperarPcsBase();
         Object[][] data = new Object[pcs.size()][Globals.atributos.length];
+        double suma = 0d;
+        ArrayList<CAE> dependientes = new ArrayList<>();//PARA GUARDAR LOS QUE SE CALCULAN ULTIMOS
+        for (int j = 0; j < pcs.size(); j++) {//UPDATEO LOS VALORES
+            CAE caeValor = (CAE) pcs.get(j).get(Globals.cae);
+            if (caeValor.isTengoDatos()) {
+                //caeValor.toString();
+                caeValor.calcularCae();
+                suma += caeValor.getCAE();
+            } else
+                dependientes.add(caeValor);
+        }
+        int cantidad = pcs.size() - dependientes.size();
+        double promedio = -1;
+        if (cantidad != 0) {
+            promedio = suma / cantidad;
+        }
+        for (CAE unCae : dependientes) {
+            unCae.setCaeCalculado(promedio);
+        }
+        System.out.println("En el inventario el promedio me dio: " + promedio);
         for (int i = 0; i < pcs.size(); i++) {
             for (int j = 0; j < Globals.atributos.length; j++) {
                 data[i][j] = pcs.get(i).get(Globals.atributos[j]);
