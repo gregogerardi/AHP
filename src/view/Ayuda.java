@@ -46,7 +46,7 @@ public class Ayuda extends Visible {
         textAyuda.append("*VGA: Capacidad de conectar un por VGA (Video Graphics Array)\n");
         atrasButton.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseReleased(MouseEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 cambiarAAnterior();
             }
         });

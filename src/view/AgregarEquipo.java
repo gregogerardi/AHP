@@ -156,13 +156,13 @@ public class AgregarEquipo extends Visible {
         });
         atrasButton.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseReleased(MouseEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 cambiarAAnterior();
             }
         });
         agregarButton.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseReleased(MouseEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 int precio = 0;
                 boolean valido = true;
                 try {

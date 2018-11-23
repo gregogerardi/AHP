@@ -127,13 +127,13 @@ public class BuscquedaAvanzada extends Visible {
         });*/
         atrasButton.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseReleased(MouseEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 cambiarAAnterior();
             }
         });
         siguienteButton.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseReleased(MouseEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 //int precio = 0;
                 //boolean valido = true;
                 /*try {

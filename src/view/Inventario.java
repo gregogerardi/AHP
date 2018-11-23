@@ -37,7 +37,7 @@ public class Inventario extends Visible {
         $$$setupUI$$$();
         botonClearDB.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseReleased(MouseEvent e) {
+            public void mouseClicked(MouseEvent e) {
 
                 int rpta = JOptionPane.showConfirmDialog(null, "Desea confirmar? esto vaciara toda la base de computadoras irreversiblemente", "Confirmar borrado", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                 if (rpta == 0) {
@@ -50,19 +50,19 @@ public class Inventario extends Visible {
         });
         atrasButton.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseReleased(MouseEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 cambiarAAnterior();
             }
         });
         botonInventario.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseReleased(MouseEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 cambiarAAgregarEquipo();
             }
         });
         borrasSeleccionadoButton.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseReleased(MouseEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 if (borrasSeleccionadoButton.isEnabled()) {
                     int row = table1.getSelectedRow();
                     Object[] pcDatos = ((Vector) defaultTableModel.getDataVector().elementAt(row)).toArray();

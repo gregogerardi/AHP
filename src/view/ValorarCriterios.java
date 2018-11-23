@@ -34,13 +34,13 @@ public class ValorarCriterios extends Visible {
         $$$setupUI$$$();
         atrasButton.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseReleased(MouseEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 cambiarAAnterior();
             }
         });
         buscarButton.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseReleased(MouseEvent e) {
+            public void mouseClicked(MouseEvent e) {
 
                 cambiarAResultados();
             }
@@ -55,12 +55,6 @@ public class ValorarCriterios extends Visible {
         ayudaButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-            }
-        });
-        ayudaButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseReleased(MouseEvent e) {
                 cambiarAAyuda();
             }
         });

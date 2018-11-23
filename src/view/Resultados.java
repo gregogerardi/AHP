@@ -26,7 +26,7 @@ public class Resultados extends Visible {
         $$$setupUI$$$();
         buscarButton.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseReleased(MouseEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 cambiarAAnterior();
             }
         });
