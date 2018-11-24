@@ -135,6 +135,12 @@ public class Inventario extends Visible {
         for (CAE unCae : dependientes) {
             unCae.setCaeCalculado(promedio);
         }
+        if (CAE.INTERES == 0d) {
+            for (int j = 0; j < pcs.size(); j++) {//UPDATEO LOS VALORES
+                CAE caeValor = (CAE) pcs.get(j).get(Globals.cae);
+                caeValor.setCaeCalculado(1);
+            }
+        }
         System.out.println("En el inventario el promedio me dio: " + promedio);
         for (int i = 0; i < pcs.size(); i++) {
             for (int j = 0; j < Globals.atributos.length; j++) {

@@ -29,6 +29,12 @@ public class CriterioCAE extends CriterioSimple {
         for (CAE unCae : dependientes) {
             unCae.setCaeCalculado(promedio);
         }
+        if (CAE.INTERES == 0d) {
+            for (int j = 0; j < alternativas.size(); j++) {//UPDATEO LOS VALORES
+                CAE caeValor = (CAE) alternativas.get(j).get(Globals.cae);
+                caeValor.setCaeCalculado(1);
+            }
+        }
         System.out.println("En el calculo el promedio quedo: "+promedio);
         for (int j = 0; j < alternativas.size(); j++) {
             for (int k = j; k < alternativas.size(); k++) {
